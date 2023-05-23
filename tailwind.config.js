@@ -11,7 +11,10 @@ module.exports = {
     }, 
     extend: {
       colors: {
-        'logo': '#79443B'
+        'cbrown': '#79443B',
+        'cgreen': '#41644A',
+        'cgray': "#EEEEEE",
+        'ctan': '#fafafa'
       }
     }
   },
