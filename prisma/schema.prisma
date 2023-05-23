@@ -8,29 +8,35 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  logs  Log[]
+  id         Int         @id @default(autoincrement())
+  email      String      @unique
+  name       String?
+  serviceLog ServiceLog?
 }
 
-model Log {
-  id      Int     @id @default(autoincrement())
-  title   String  @unique
-  entries Entry[]
-  User    User    @relation(fields: [userId], references: [id])
-  userId  Int
+model ServiceLog {
+  id      Int            @id @default(autoincrement())
+  entries ServiceEntry[]
+  User    User           @relation(fields: [userId], references: [id])
+  userId  Int            @unique
 }
 
-model Entry {
-  id       Int      @id @default(autoincrement())
-  date     DateTime
-  title    Int?
-  hours    Int?
-  comments Int?
-  Log      Log?     @relation(fields: [logId], references: [id])
-  logId    Int?
+model ServiceEntry {
+  id           Int         @id @default(autoincrement())
+  //required
+  date         DateTime
+  hours        Decimal
+  videos       Int         @default(0)
+  publications Int         @default(0)
+  returnVisits Int         @default(0)
+  //optional
+  title        String?     @db.VarChar(50)
+  comments     String?     @db.VarChar(500)
+  //----//
+  Log          ServiceLog? @relation(fields: [logId], references: [id])
+  logId        Int?
 }
