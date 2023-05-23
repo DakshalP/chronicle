@@ -1,6 +1,7 @@
 import { AiOutlineAppstoreAdd } from "react-icons/ai"
 import { TbFlag3 } from "react-icons/tb"
 import { IoMdNotificationsOutline } from "react-icons/io"
+import Link from 'next/link'
 
 const Header = () => (
     <header className="text-gray-600 body-font">
@@ -14,7 +15,10 @@ const Header = () => (
             <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                 {/* <a className="mr-5 hover:text-gray-900">Join</a> */}
             </nav>
-            <button className="inline-flex items-center bg-cgreen text-white border-0 py-1 px-3 focus:outline-none hover:bg-black rounded text-base mt-4 md:mt-0">
+            <button className="mr-3 inline-flex items-center bg-gray-200 text-cgreen font-medium border-0 py-1 px-3 focus:outline-none hover:bg-black hover:text-white rounded text-base mt-4 md:mt-0">
+                Sign up
+            </button>
+            <button className="inline-flex items-center bg-cbrown text-white border-0 py-1 px-3 focus:outline-none hover:bg-black rounded text-base mt-4 md:mt-0">
                 Sign in
             </button>
         </div>
@@ -35,9 +39,9 @@ const Hero = () => (
                     <button className="inline-flex text-white font-bold bg-cgreen border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                         Get started
                     </button>
-                    <button className="ml-4 inline-flex font-medium bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
-                        Sign in
-                    </button>
+                    <Link href='/signin' className="ml-4 inline-flex font-medium bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
+                    Sign In
+                    </Link>
                 </div>
             </div>
             <div className="lg:w-2/3 md:w-1/2 w-5/6">
