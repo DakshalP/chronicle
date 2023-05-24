@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 const display = DM_Serif_Display({ weight: "400", subsets: ["latin"], variable: "--font-dm-serif-display" });
 
 export const metadata = {
-    title: "Chronicler",
+    title: "Chronicle",
     description: "Log time and display reports.",
 };
 
