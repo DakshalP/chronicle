@@ -2,16 +2,12 @@ import { AiOutlineAppstoreAdd } from "react-icons/ai"
 import { TbFlag3 } from "react-icons/tb"
 import { IoMdNotificationsOutline } from "react-icons/io"
 import Link from 'next/link'
+import Logo from "./logo";
 
 const Header = () => (
     <header className="text-gray-600 body-font">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 cursor-pointer">
-                <img src="/logo.svg" />
-                <span className="ml-3 text-4xl font-display font-extrabold text-cbrown">
-                    chronicle
-                </span>
-            </a>
+            <Logo href="/" />
             <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                 {/* <a className="mr-5 hover:text-gray-900">Join</a> */}
             </nav>
@@ -157,15 +153,10 @@ const Contact = () =>  (
 
 )
 
-const Footer = () => (
+const Actions = () => (
   <footer className="text-gray-600 body-font">
   <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-    <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-                <img src="/logo.svg" />
-                <span className="ml-3 text-4xl font-display font-extrabold text-cbrown">
-                    chronicle
-                </span>
-    </a>
+    <Logo href="/" />
     <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">Logo uses an icon from Pro Icons on The Noun Project.
     </p>
     <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
@@ -187,7 +178,7 @@ export default function Home() {
             </div>
             <Feature />
             <Contact />
-            <Footer />
+            <Actions />
         </main>
     );
 }
