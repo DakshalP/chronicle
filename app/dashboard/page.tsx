@@ -1,6 +1,6 @@
 
 const Month = () => (
-    <div className="xl:w-1/2 lg:w-2/3 my-5 p-10 w-full cursor-pointer active:scale-95 transition-transform">
+    <div className="2xl:w-1/2 xl:w-2/3 my-5 p-10 w-full cursor-pointer active:scale-95 transition-transform">
         <div className="px-5 py-2 text-3xl shadow-md dark:text-white rounded-t-lg bg-white dark:bg-gray-800 font-extrabold font-display w-fit">
             May
         </div>
@@ -39,11 +39,6 @@ const Month = () => (
     </div>
 );
 
-const Footer = () => (
-    <div className="hidden sticky bottom-0 lg:flex flex-row justify-end">
-        
-    </div>
-);
 export default async function Dashboard() {
     return (
         <div>
@@ -51,9 +46,8 @@ export default async function Dashboard() {
                 <Month />
                 <Month />
                 <Month />
+                <Month />
             </div>
-
-            <Footer />
         </div>
     );
 }
