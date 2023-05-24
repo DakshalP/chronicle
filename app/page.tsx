@@ -2,7 +2,7 @@ import { AiOutlineAppstoreAdd } from "react-icons/ai"
 import { TbFlag3 } from "react-icons/tb"
 import { IoMdNotificationsOutline } from "react-icons/io"
 import Link from 'next/link'
-import Logo from "./logo";
+import Logo from "@/components/Logo"
 
 const Header = () => (
     <header className="text-gray-600 body-font">
