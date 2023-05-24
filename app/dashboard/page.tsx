@@ -1,4 +1,3 @@
-import { AiOutlinePlus } from "react-icons/ai";
 
 const Month = () => (
     <div className="xl:w-1/2 lg:w-2/3 my-5 p-10 w-full cursor-pointer active:scale-95 transition-transform">
@@ -42,9 +41,7 @@ const Month = () => (
 
 const Footer = () => (
     <div className="hidden sticky bottom-0 lg:flex flex-row justify-end">
-        <button className="active:scale-95 transition-transform m-20 font-extrabold font-display text-white p-10 text-xl w-fit bg-gradient-to-tr from-cgreen to-green-500 rounded-lg flex flex-row items-center gap-2">
-            <AiOutlinePlus className="w-8 h-8" /> New entry
-        </button>
+        
     </div>
 );
 export default async function Dashboard() {

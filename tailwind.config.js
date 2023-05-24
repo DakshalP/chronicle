@@ -14,7 +14,7 @@ module.exports = {
         'cbrown': '#79443B',
         'cgreen': '#41644A',
         'cgray': "#EEEEEE",
-        'ctan': '#fafafa'
+        'cdarkgray': '#fafafa'
       }
     }
   },
