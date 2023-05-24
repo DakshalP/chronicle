@@ -153,7 +153,7 @@ const Contact = () =>  (
 
 )
 
-const Actions = () => (
+const Footer = () => (
   <footer className="text-gray-600 body-font">
   <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
     <Logo href="/" />
@@ -178,7 +178,7 @@ export default function Home() {
             </div>
             <Feature />
             <Contact />
-            <Actions />
+            <Footer />
         </main>
     );
 }
