@@ -1,17 +1,10 @@
-async function getUsers() {
-    const res = await fetch(`${process.env.BASE_URL}/api/getUsers`, {next: {revalidate: 0}})
-    return res.json()
-  }
-  
-  export default async function Home() {
-    const data: {id: number, email: string, name: string}[] = await getUsers();
+
+export default async function Dashboard() {
     return (
-      <main>
-        <h1>Hello there!</h1>
-        {data.map(post => (
-          <h1>{post.email}</h1>
-        ))}
-      </main>
-    )
-  }
-  
+        <div>
+            <div className="flex justify-center items-center min-h-screen min-w-screen bg-cgray dark:bg-gray-700">
+                <h1 className="font-extrabold text-6xl font-display tracking-wider">Loading...</h1>
+            </div>
+        </div>
+    );
+}

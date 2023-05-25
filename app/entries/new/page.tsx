@@ -11,11 +11,11 @@ export default function NewEntry() {
                 </div>
             <form className="space-y-6" action="#">
                 <h1 className="text-6xl font-extrabold font-display">New entry</h1>
-                <div className="flex justify-center gap-2">
-                    <input className="w-20"/>
-                    <Button secondary>-1</Button>
-                    <Button color="cgreen">+0.5</Button>
-                    <Button color="cgreen">+1</Button>
+                <div className="flex justify-center gap-2 h-20">
+                    <input className="bg-gray-900 rounded text-3xl w-full min-w-min" />
+                    <Button>-1</Button>
+                    <Button>+1/2</Button>
+                    <Button>+1</Button>
                 </div>
                 <Button color="cbrown" type="submit">Submit</Button>
             </form>

@@ -13,8 +13,8 @@ const Header = () => (
                 {/* <a className="mr-5 hover:text-gray-900">Join</a> */}
             </nav>
             <div className="flex gap-3">
-            <Button secondary scale="small">Sign up</Button>
-            <Button color="cbrown" scale="small" href="/signin">Sign in</Button>
+            <Button >Sign up</Button>
+            <Button variant="cbrown" href="/signin">Sign in</Button>
             </div>
         </div>
     </header>
@@ -31,8 +31,8 @@ const Hero = () => (
                     Chronicle lets you to keep track of your service hours and more. With automated totals and other features to make reporting easier.
                 </p>
                 <div className="flex justify-center gap-3">
-                    <Button color="cgreen" href="/dashboard">Get Started</Button>
-                    <Button secondary href="/signin">Sign in</Button>                    
+                    <Button variant={"cgreen"} href="/dashboard">Get Started</Button>
+                    <Button href="/signin">Sign in</Button>                    
                 </div>
             </div>
             <div className="lg:w-2/3 md:w-1/2 w-5/6">
