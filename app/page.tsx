@@ -3,6 +3,7 @@ import { TbFlag3 } from "react-icons/tb"
 import { IoMdNotificationsOutline } from "react-icons/io"
 import Link from 'next/link'
 import Logo from "@/components/Logo"
+import Button from "@/components/Button"
 
 const Header = () => (
     <header className="text-gray-600 body-font">
@@ -11,12 +12,8 @@ const Header = () => (
             <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                 {/* <a className="mr-5 hover:text-gray-900">Join</a> */}
             </nav>
-            <button className="mr-3 inline-flex items-center bg-gray-200 text-cgreen font-medium border-0 py-1 px-3 focus:outline-none hover:bg-black hover:text-white rounded text-base mt-4 md:mt-0">
-                Sign up
-            </button>
-            <button className="inline-flex items-center bg-cbrown text-white border-0 py-1 px-3 focus:outline-none hover:bg-black rounded text-base mt-4 md:mt-0">
-                Sign in
-            </button>
+            <Button secondary scale="small">Sign up</Button>
+            <Button color="cbrown" scale="small" href="/signin">Sign in</Button>
         </div>
     </header>
 );
@@ -32,12 +29,11 @@ const Hero = () => (
                     Chronicle lets you to keep track of your service hours and more. With automated totals and other features to make reporting easier.
                 </p>
                 <div className="flex justify-center">
-                    <button className="inline-flex text-white font-bold bg-cgreen border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                    {/* <button className="inline-flex text-white font-bold bg-cgreen border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                         Get started
-                    </button>
-                    <Link href='/signin' className="ml-4 inline-flex font-medium bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
-                    Sign In
-                    </Link>
+                    </button> */}
+                    <Button color="cgreen">Get Started</Button>
+                    <Button secondary href="/signin">Sign in</Button>
                 </div>
             </div>
             <div className="lg:w-2/3 md:w-1/2 w-5/6">
@@ -154,7 +150,7 @@ const Contact = () =>  (
 )
 
 const Footer = () => (
-  <footer className="text-gray-600 body-font">
+  <footer className="text-gray-600 body-font bg-cgray">
   <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
     <Logo href="/" />
     <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">Logo uses an icon from Pro Icons on The Noun Project.

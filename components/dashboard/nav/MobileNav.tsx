@@ -35,7 +35,7 @@ const MobileMenu = ({
     menuOpen: boolean;
     setMenuOpen: Function;
 }) => (
-    <div className={`flex flex-col justify-evenly items-center ${menuOpen ? 'opacity-100 h-full' : 'translate-y-10 opacity-0 h-0 fixed top-0 invisible'} transition`}>
+    <div onClick={() => setMenuOpen(false)} className={`flex flex-col justify-evenly items-center ${menuOpen ? 'opacity-100 h-full' : 'translate-y-10 opacity-0 h-0 fixed top-0 invisible'} transition`}>
         <Logo href="/dashboard" adaptForDarkMode={true} />
         <NavLinks />
         <MenuToggle menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
@@ -49,13 +49,13 @@ const MobileNav = () => {
         <nav
             className={`lg:hidden w-screen ${
                 menuOpen ? "fixed bottom-0 h-screen" : "sticky bottom-0"
-            } bg-cdarkgray dark:bg-gray-600  shadow-2xl shadow-black dark:shadow-none`}
+            } bg-cgray-light dark:bg-gray-600  shadow-2xl shadow-black dark:shadow-none`}
         >
             <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             <div
                 className={`w-full flex flex-row ${
                     menuOpen ? "hidden" : ""
-                } bg-cdarkgray dark:bg-gray-600 justify-evenly items-center`}
+                } bg-cgray-light dark:bg-gray-600 justify-evenly items-center`}
             >
                 <MenuToggle menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
                 <NewButton />

@@ -9,7 +9,7 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }) {
     return (
-        <section className="dark:bg-gray-700 dark:text-gray-100 flex lg:flex-row flex-col">
+        <section className="flex lg:flex-row flex-col">
             {/* Shared UI here e.g. a sidebar */}
             <DesktopNav />
             <div className="w-full">{children}</div>
