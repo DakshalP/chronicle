@@ -22,7 +22,7 @@ const NavLink = ({ properties, label }: { properties: Array<any>; label: string 
 const NavLinks = () => (
     <div className="lg:block flex flex-col justify-between h-1/2 w-full">
         {Object.entries(LinkObj).map(([key, value]) => (
-            <NavLink label={key} properties={value} />
+            <NavLink key={key} label={key} properties={value} />
         ))}
     </div>
 );

@@ -1,32 +1,23 @@
 import Button from "@/components/Button"
+import Link from "next/link"
+import { IoMdClose } from "react-icons/io"
 
 export default function NewEntry() {
     return (
         <div className="flex justify-center items-center h-screen">
-            <div className="w-full lg:h-fit h-full max-w-4xl lg:mx-10 bg-cgray-light lg:border border-gray-200 rounded-lg lg:shadow lg:p-8 p-10 dark:bg-gray-800 dark:border-gray-700">
+            <div className="relative w-full lg:h-fit h-full max-w-4xl lg:mx-10 bg-cgray-light lg:border border-gray-200 rounded-lg lg:shadow lg:p-8 p-10 dark:bg-gray-800 dark:border-gray-700">
+                <div className="absolute top-0 right-0 p-5">
+                    <Link href="/dashboard"> <IoMdClose className="w-10 h-10 text-cgray-outline dark:text-gray-500"/> </Link>
+                </div>
             <form className="space-y-6" action="#">
-                <h5 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
-                <div>
-                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                </div>
-                <div>
-                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-                    <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                </div>
-                <div className="flex items-start">
-                    <div className="flex items-start">
-                        <div className="flex items-center h-5">
-                            <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
-                        </div>
-                        <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-                    </div>
-                    <a href="#" className="ml-auto text-sm text-cgreen hover:underline dark:text-blue-500">Lost Password?</a>
+                <h1 className="text-6xl font-extrabold font-display">New entry</h1>
+                <div className="flex justify-center gap-2">
+                    <input className="w-20"/>
+                    <Button secondary>-1</Button>
+                    <Button color="cgreen">+0.5</Button>
+                    <Button color="cgreen">+1</Button>
                 </div>
                 <Button color="cbrown" type="submit">Submit</Button>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                    Not registered? <a href="#" className="text-cgreen hover:underline dark:text-blue-500">Create account</a>
-                </div>
             </form>
         </div>
         </div>

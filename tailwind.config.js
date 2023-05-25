@@ -1,5 +1,3 @@
-const colors = require("tailwindcss/colors");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
@@ -8,30 +6,29 @@ module.exports = {
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
-        fontFamily: {
-            display: ["var(--font-dm-serif-display)", "monospace"],
-        },
         extend: {
+            fontFamily: {
+                display: ["var(--font-dm-serif-display)", "serif"]
+            },
             colors: {
+                cgray: {
+                    DEFAULT: "#EEEEEE",
+                    light: "#fafafa",
+                    dark: "#e2e2e2",
+                    hover: "#d6d6d6",
+                    outline: "#b2b2b2", 
+                },
                 cbrown: {
                     DEFAULT: "#79443B",
                     light: "#9b574c",
-                    dark: "#57312a",
+                    dark: "#57312a", 
                 },
                 cgreen: {
                     DEFAULT: "#41644A",
                     light: "#708a77",
                     dark: "#304b37",
                 },
-                cgray: {
-                    DEFAULT: "#EEEEEE",
-                    light: "#fafafa",
-                    dark: "#e2e2e2",
-                    hover: "#d6d6d6",
-                    outline: "#b2b2b2",
-                },
-            },
-        },
-    },
-    plugins: [],
-};
+            }
+        }
+    }
+}

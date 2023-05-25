@@ -30,16 +30,14 @@ const Button: React.FunctionComponent<ButtonProps> = ({
         //else undefined
     };
 
-    const primaryStyles = `
-    text-white font-bold  rounded text-center
+    const primaryStyles = `px-4 py-2 text-white font-bold rounded text-center 
     focus:ring-4 focus:outline-none focus:ring-${color}-light 
-    bg-${color} hover:bg-${color}-dark
-    dark:focus:ring-${color}-light
-    transition-colors
-    `
+    bg-${color} hover:bg-${color}-dark dark:focus:ring-${color}-light 
+    transition-colors`
 
 
     const secondaryStyles = `
+    px-4 py-2
     text-gray-700 rounded  text-center font-medium
     focus:ring-4 focus:outline-none focus:ring-cgray-outline
     bg-cgray-dark hover:bg-cgray-hover transition-colors
@@ -50,8 +48,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({
             onClick={getOnClick()}
             type={type}
             {...buttonProps}
-            className={`${!secondary ? primaryStyles : secondaryStyles} 
-            ${scale == "small" ? 'text-sm py-1.5 px-4 tracking-wide mx-1.5' : 'text-lg py-2 px-6 mx-2'}`}
+            className={!secondary ? primaryStyles : secondaryStyles}
         >
             {children}
         </button>
