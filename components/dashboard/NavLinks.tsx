@@ -6,14 +6,14 @@ import Link from "next/link"
 
 const LinkObj: object = {
     "Service Log": [<FiBook className="w-8 h-8" />, "/dashboard"],
-    "Hour Goals": [<RiFlag2Line className="w-8 h-8" />],
-    "Notifications": [<IoMdNotificationsOutline className="w-8 h-8" />],
-    "Return Visits": [<HiOutlineLocationMarker className="w-8 h-8" />],
+    "Hour Goals": [<RiFlag2Line className="w-8 h-8" />, "/dashboard/coming-soon"],
+    "Notifications": [<IoMdNotificationsOutline className="w-8 h-8" />, "/dashboard/coming-soon"],
+    "Return Visits": [<HiOutlineLocationMarker className="w-8 h-8" />, "/dashboard/coming-soon"],
 };
 
 const NavLink = ({ properties, label }: { properties: Array<any>; label: string }) => (
     <Link href={properties[1] || ''} className="mr-auto flex items-center w-full">
-        <span className="cursor-pointer lg:mr-5 lg:mb-5 lg:py-0 py-5 font-extrabold tracking-wide lg:text-xl text-2xl flex flex-row lg:justify-start justify-center items-center gap-5 w-full">
+        <span className={` ${label !== "Service Log" ? " line-through" : ""} cursor-pointer lg:mr-5 lg:mb-5 lg:py-0 py-5 font-extrabold tracking-wide lg:text-xl text-2xl flex flex-row lg:justify-start justify-center items-center gap-5 w-full`}>
             {properties[0]}
             {label}
         </span>
