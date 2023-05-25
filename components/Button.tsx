@@ -15,7 +15,7 @@ const buttonVariants = cva(
                 cgreen:
                     "font-bold text-white ring-cgreen-light bg-cgreen hover:bg-cgreen-dark dark:ring-cgreen-light",
                 cgray:
-                    "font-medium text-gray-700 ring-cgray-outline bg-cgray-dark hover:bg-cgray-hover"
+                    "font-medium text-gray-700 ring-cgray-outline bg-cgray-dark hover:bg-cgray-hover dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:ring-gray-500"
             },
             size: {
                 default: "py-3 px-6",

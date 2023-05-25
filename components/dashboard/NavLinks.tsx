@@ -5,7 +5,7 @@ import { RiFlag2Line } from "react-icons/ri";
 import Link from "next/link"
 
 const LinkObj: object = {
-    "Service Log": [<FiBook className="w-8 h-8" />, "/dashboard/entries"],
+    "Service Log": [<FiBook className="w-8 h-8" />, "/dashboard"],
     "Hour Goals": [<RiFlag2Line className="w-8 h-8" />],
     "Notifications": [<IoMdNotificationsOutline className="w-8 h-8" />],
     "Return Visits": [<HiOutlineLocationMarker className="w-8 h-8" />],
