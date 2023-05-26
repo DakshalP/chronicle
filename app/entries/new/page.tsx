@@ -12,7 +12,7 @@ export default function NewEntry() {
                 <div className="absolute top-0 right-0 p-5">
                     <Link href="/dashboard"> <IoMdClose className="w-10 h-10 active:text-cgreen text-cgray-outline dark:text-gray-500"/> </Link>
                 </div>
-            <form className="space-y-10" action="#">
+            <form className="lg:space-y-10 space-y-6" action="#">
                 <h1 className="text-6xl font-extrabold font-display">New entry</h1>
                 <div>
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Title (optional)</label>
