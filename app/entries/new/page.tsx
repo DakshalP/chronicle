@@ -15,15 +15,15 @@ export default function NewEntry() {
             <form className="space-y-10" action="#">
                 <h1 className="text-6xl font-extrabold font-display">New entry</h1>
                 <div>
-                    <label htmlFor="large-input" className="block mb-2 font-medium text-gray-900 dark:text-white">Title (optional)</label>
+                    <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Title (optional)</label>
                     <Input />
                 </div>
                 <div>
-                    <label htmlFor="large-input" className="block mb-2 font-medium text-gray-900 dark:text-white">Date</label>
+                    <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Date</label>
                     <Input />
                 </div>
                 <div>
-                    <label htmlFor="large-input" className="block mb-2 font-medium text-gray-900 dark:text-white">Hours</label>
+                    <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Hours</label>
                     <div className="flex gap-2">
                         <Input className="flex-grow" variant={"number"} />
                         {/* <Button><FaUndoAlt /></Button> */}
@@ -33,21 +33,21 @@ export default function NewEntry() {
                 </div>
                 <div className="flex gap-10 md:flex-nowrap flex-wrap">
                     <div className="w-full">
-                        <label htmlFor="large-input" className="block mb-2 font-medium text-gray-900 dark:text-white">Publications</label>
+                        <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Publications</label>
                         <div className="flex justify-center gap-2">
                             <Input variant={"number"} />
                             <Button variant={"cgreen"} className="text-xl" tabIndex={-1}><span className="text-3xl">+</span></Button>
                         </div>
                     </div>
                     <div className="w-full">
-                        <label htmlFor="large-input" className="block mb-2 font-medium text-gray-900 dark:text-white">Videos</label>
+                        <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Videos</label>
                         <div className="flex justify-center gap-2">
                             <Input variant={"number"} />
                             <Button variant={"cgreen"} className="text-xl" tabIndex={-1}><span className="text-3xl">+</span></Button>
                         </div>
                     </div>
                     <div className="w-full">
-                        <label htmlFor="large-input" className="block mb-2 font-medium text-gray-900 dark:text-white">Return Visits</label>
+                        <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Return Visits</label>
                         <div className="flex justify-center gap-2">
                             <Input variant={"number"} />
                             <Button variant={"cgreen"} className="text-xl" tabIndex={-1}><span className="text-3xl">+</span></Button>
@@ -55,7 +55,7 @@ export default function NewEntry() {
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="large-input" className="block mb-2 font-medium text-gray-900 dark:text-white">Notes (optional)</label>
+                    <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Notes (optional)</label>
                     <TextArea />
                 </div>
                 <div className="flex gap-5">

@@ -13,8 +13,8 @@ const Header = () => (
                 {/* <a className="mr-5 hover:text-gray-900">Join</a> */}
             </nav>
             <div className="flex gap-3">
-            <Button >Sign up</Button>
-            <Button variant="cbrown" href="/signin">Sign in</Button>
+            <Button size="small" >Sign up</Button>
+            <Button size="small" variant="cbrown" href="/signin">Sign in</Button>
             </div>
         </div>
     </header>
@@ -163,7 +163,7 @@ const Footer = () => (
 </footer>
 )
 
-export default function Home() {
+export default function Home() {  
     return (
         <main>
             <div className="min-h-screen flex flex-col justify-between bg-gradient-to-b from-gray-50 to-gray-100">
