@@ -10,7 +10,7 @@ const inputVariants = cva(
         variants: {
             variant: {
                 default: "lg:p-3 p-2 lg:text-xl text-lg",
-                number: "lg:p-6 p-3 tracking-wide text-3xl"
+                number: "lg:p-6 p-4 tracking-wide text-3xl"
             }
         },
         defaultVariants: {
