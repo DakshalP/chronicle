@@ -27,7 +27,7 @@ export default function DarkModeToggle() {
 
     return (
         <Dropdown menu={MenuItems}>
-            <div className="cursor-pointer">
+            <div className="lg:block hidden cursor-pointer">
                 <BsSun
                     className="w-6 h-6 dark:hidden"
                 />

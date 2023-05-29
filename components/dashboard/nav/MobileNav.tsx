@@ -5,6 +5,7 @@ import { RiMenu2Line } from "react-icons/ri";
 import NavLinks from "../NavLinks";
 import Logo from "@/components/Logo";
 import { IoMdClose } from "react-icons/io";
+import YearTotal from "../YearTotal";
 
 const MenuToggle = ({
     menuOpen,
@@ -37,7 +38,13 @@ const MobileMenu = ({
 }) => (
     <div onClick={() => setMenuOpen(false)} className={`flex flex-col justify-evenly items-center ${menuOpen ? 'opacity-100 h-full' : 'translate-y-10 opacity-0 h-0 fixed top-0 invisible'} transition`}>
         <Logo href="/dashboard" adaptForDarkMode={true} />
-        <NavLinks />
+        <div className="shadow bg-cgray dark:bg-gray-700 py-5 px-20 rounded text-gray-900 dark:text-white">
+            <YearTotal />
+        </div>
+        <div className="h-1/3">
+            <NavLinks />
+        </div>
+        
         <MenuToggle menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     </div>
 );
@@ -46,6 +53,7 @@ const MobileNav = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
+        
         <nav
             className={`lg:hidden w-screen ${
                 menuOpen ? "fixed bottom-0 h-screen" : "sticky bottom-0"
