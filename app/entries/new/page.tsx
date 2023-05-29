@@ -7,7 +7,7 @@ import TextArea from "@/components/TextArea"
 
 export default function NewEntry() {
     return (
-        <div className="flex justify-center items-center min-h-screen bg-cgray-dark dark:bg-gradient-to-tr from-gray-500 via-gray-600 to-gray-700">
+        <div className="flex justify-center items-center min-h-screen  bg-gradient-to-tr from-gray-300 to-cgray-dark dark:from-gray-500 dark:via-gray-600 dark:to-gray-700">
             <div className="relative w-full lg:h-fit h-full max-w-4xl lg:mx-10 md:m-5 bg-cgray-light lg:border border-gray-200 md:rounded-lg lg:shadow lg:p-9 p-10 dark:bg-gray-800 dark:border-gray-700">
                 <div className="absolute top-0 right-0 p-5">
                     <Link href="/dashboard"> <IoMdClose className="w-10 h-10 active:text-cgreen text-cgray-outline dark:text-gray-500"/> </Link>

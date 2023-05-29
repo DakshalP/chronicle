@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import Month from "@/components/dashboard/Month";
 
 export default async function Dashboard() {
@@ -43,6 +44,9 @@ export default async function Dashboard() {
                                 </dd>
                             </div>
                         </dl>
+                    </div>
+                    <div className="w-full flex justify-center">
+                        <Button>See more</Button>   
                     </div>
                 </div>
             </div>

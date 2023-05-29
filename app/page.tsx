@@ -13,7 +13,7 @@ const Header = () => (
                 {/* <a className="mr-5 hover:text-gray-900">Join</a> */}
             </nav>
             <div className="flex gap-3">
-            <Button size="small" >Sign up</Button>
+            <Button size="small" variant="nodark" >Sign up</Button>
             <Button size="small" variant="cbrown" href="/signin">Sign in</Button>
             </div>
         </div>
@@ -32,7 +32,7 @@ const Hero = () => (
                 </p>
                 <div className="flex justify-center gap-3">
                     <Button variant={"cgreen"} href="/dashboard">Get Started</Button>
-                    <Button href="/signin">Sign in</Button>                    
+                    <Button href="/signin" variant="nodark">Sign in</Button>                    
                 </div>
             </div>
             <div className="lg:w-2/3 md:w-1/2 w-5/6">
