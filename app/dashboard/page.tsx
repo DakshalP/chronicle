@@ -88,7 +88,7 @@ export default async function Dashboard() {
         <>
             <div className="bg-stone-200 dark:bg-gray-800 xl:p-10 p-5 mx-auto">
                 <div className="flex md:flex-nowrap flex-wrap gap-5">
-                <div className="xl:w-2/3 md:w-1/2 w-full bg-neutral-100 border rounded px-5">
+                <div className="xl:w-2/3 md:w-1/2 w-full bg-neutral-100 dark:bg-slate-600 rounded px-5">
                         <div className="flex flex-col justify-center h-full">
                             <div className="font-extrabold font-display text-7xl text-center">
                                 May 2023
