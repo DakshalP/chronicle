@@ -2,7 +2,16 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { RiDeleteBin5Fill } from "react-icons/ri"
+import { BiTrashAlt } from "react-icons/bi"
+
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/Dialog"
 
 export type Entry = {
    id: number,
@@ -14,6 +23,10 @@ export type Entry = {
    title?: string,
    comments?: string,
 }
+
+const displayNum = (row: any, column: string) => (
+    <span className='text-lg font-semibold'>{row.getValue(column)}</span>
+)
 
 export const columns: ColumnDef<Entry>[] = [
     {
@@ -31,29 +44,52 @@ export const columns: ColumnDef<Entry>[] = [
     },
     {
         accessorKey: 'hours',
-        header: 'Hours'
+        header: 'H.',
+        cell: row => displayNum(row, 'hours')
     },
     {
         accessorKey: 'videos',
-        header: 'Videos'
+        header: 'V.',
+        cell: row => displayNum(row, 'videos')
     },
     {
         accessorKey: 'publications',
-        header: 'Publications'
+        header: 'P.',
+        cell: row => displayNum(row, 'publications')
     },
     {
         accessorKey: 'returnVisits',
-        header: 'Return Visits'
+        header: 'R.',
+        cell: row => displayNum(row, 'returnVisits')
     },
     {
         accessorKey: 'comments',
-        header: 'Comments'
+        header: 'Notes',
+        cell: ({row}) => {
+            const notes: string = row.getValue('comments')
+            return (
+                <Dialog>
+                <DialogTrigger className="dark:hover:text-gray-300 hover:text-gray-800">
+                    <span className="2xl:hidden">{notes.slice(0,15) + "..."}</span>
+                    <span className="2xl:inline-block hidden">{notes.slice(0,70) + "..."}</span>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader>
+                    <DialogTitle>{row.getValue('title')}</DialogTitle>
+                    <DialogDescription className="whitespace-pre-wrap">
+                        {row.getValue('comments')}
+                    </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+                </Dialog>
+            )
+        }
     },
     {
         accessorKey: 'delete',
-        header: 'Delete',
+        header: '',
         cell: ({row}) => (
-            <RiDeleteBin5Fill className="w-6 h-6 hover:text-red-600 cursor-pointer" />
+            <BiTrashAlt className="w-5 h-5 hover:text-cbrown cursor-pointer" />
         )
     }
 ]
