@@ -1,4 +1,4 @@
-import Calendar from "@/components/Calendar";
+import Calendar from "@/components/time/Calendar";
 import { Entry, columns } from "./columns";
 import { DataTable } from "@/components/DataTable";
 
@@ -44,7 +44,7 @@ export default async function DemoPage() {
 
     return (
         <div className="min-h-screen">
-            <Calendar />
+            <Calendar month={5} year={2023} />
             <div className="container mx-auto py-10 px-5">
                 <DataTable columns={columns} data={data} />
             </div>
