@@ -25,7 +25,7 @@ export type Entry = {
 }
 
 const displayNum = (row: any, column: string) => (
-    <span className='text-lg font-semibold'>{row.getValue(column)}</span>
+    <span className='font-semibold'>{row.getValue(column)}</span>
 )
 
 export const columns: ColumnDef<Entry>[] = [

@@ -26,7 +26,7 @@ const Calendar = ({ month, year }: { month: number; year: number }) => {
     };
 
     return (
-        <div className="p-5 w-full bg-neutral-100 shadow dark:bg-gray-800 rounded">
+        <div className="p-5 w-full bg-neutral-100 border dark:bg-gray-800 rounded">
             <span className="grid grid-cols-7 font-bold">
                 <Day variant="header">S</Day>
                 <Day variant="header">M</Day>

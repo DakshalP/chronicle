@@ -50,9 +50,9 @@ export function DataTable<TData, TValue>({
  
   return (
     <div>
-      <div className="flex items-center py-4">
+      {/* <div className="flex items-center py-4">
         <Input
-          placeholder="Filter title..."
+          placeholder="Filter by title..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) => {
             table.getColumn("title")?.setFilterValue(event.target.value)
@@ -60,7 +60,7 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-      </div>
+      </div> */}
       <div className="rounded shadow">
         <Table>
           <TableHeader>

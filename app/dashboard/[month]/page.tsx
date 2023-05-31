@@ -1,4 +1,4 @@
-import Calendar from "@/components/time/Calendar";
+import Calendar from "@/components/calendar/Calendar";
 import { Entry, columns } from "./columns";
 import { DataTable } from "@/components/DataTable";
 
