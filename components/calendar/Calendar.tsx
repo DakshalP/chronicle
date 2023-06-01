@@ -1,7 +1,7 @@
-import { arrOfLength, getDaysInMonth, getFirstWeekdayNum } from "@/lib/utils";
+import { arrOfLength, cn, getDaysInMonth, getFirstWeekdayNum } from "@/lib/utils";
 import Day from "./Day";
 
-const Calendar = ({ month, year }: { month: number; year: number }) => {
+const Calendar = ({ month, year, className = "" }: { month: number; year: number, className?: string}) => {
     const monthIndex = month - 1;
 
     const selected = [6, 20, 27, 19, 22];
@@ -26,7 +26,7 @@ const Calendar = ({ month, year }: { month: number; year: number }) => {
     };
 
     return (
-        <div className="p-5 w-full bg-neutral-100 dark:bg-gray-800 rounded">
+        <div className={cn("p-5 w-full bg-neutral-100 md:dark:bg-gray-800 dark:bg-gray-900 md:mb-0 mb-10 rounded text-sm", className)}>
             <span className="grid grid-cols-7 font-bold">
                 <Day variant="header">S</Day>
                 <Day variant="header">M</Day>

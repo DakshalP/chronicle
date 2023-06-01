@@ -2,12 +2,12 @@ import { VariantProps, cva } from 'class-variance-authority'
 import { cn } from '@/lib/utils';
 
 const dayVariants = cva(
-    "text-sm rounded aspect-square flex justify-center items-center font-bold",
+    "rounded aspect-square flex justify-center items-center font-bold",
     {
         variants: {
             variant: {
-                default: "bg-neutral-200 text-neutral-400 dark:bg-gray-700 dark:text-gray-500",
-                header: "bg-inherit text-base",
+                default: "bg-neutral-300 text-neutral-400 dark:bg-gray-700 dark:text-gray-500",
+                header: "bg-inherit",
                 green: "bg-cgreen text-white",
             }                
         },
