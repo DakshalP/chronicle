@@ -1,8 +1,21 @@
-import { FcGoogle } from "react-icons/fc"
+'use client'
+
+import { FcGoogle } from "react-icons/fc";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import { FormEvent, useState } from "react";
+import { signIn } from "next-auth/react";
 
-export default function SignIn() {
+export default async function SignIn() {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        signIn("credentials-login", { email, password });
+    };
+
     return (
         <section className="flex flex-col md:flex-row h-screen items-center">
             <div className="bg-cgreen hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
@@ -22,33 +35,31 @@ export default function SignIn() {
                         Sign in to your account
                     </h1>
 
-                    <form className="mt-6" action="#" method="POST">
+                    <form className="mt-6" >
+                        <input name="csrfToken" type="hidden" />
                         <div>
-                            <label className="block">
-                                Email Address
-                            </label>
-                            <Input
-                                type="email"
-                                name=""
-                                id=""
-                                placeholder="Enter Email Address"
-                                autoFocus
-                                autoComplete="true"
-                                required
+                            <label className="block">Email Address</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="text"
+                                placeholder="Enter email"
+                                // onChange={(e) => setEmail(e.target.value)}
+                                // value={email}
+                                autoComplete="false"
                             />
                         </div>
 
                         <div className="mt-4">
-                            <label className="block">
-                                Password
-                            </label>
+                            <label className="block">Password</label>
                             <Input
                                 type="password"
                                 name=""
                                 id=""
                                 placeholder="Enter Password"
-                                minLength={6}
                                 required
+                                // value={password}
+                                // onChange={e => setPassword(e.target.value)}
                             />
                         </div>
 
@@ -61,20 +72,17 @@ export default function SignIn() {
                             </a>
                         </div>
 
-                        <Button 
-                            variant="cbrown"
-                            type="submit"
-                            className="w-full"
-                        >
-                            Log In
-                        </Button>
+                        <Button type="submit" variant="cbrown" className="w-full">Sign in</Button>
                     </form>
 
                     <hr className="my-6 border-gray-300 w-full" />
 
-                    <Button variant="cgray" className="w-full flex justify-center items-center">
-                            <FcGoogle />
-                            <span className="ml-4">Log in with Google</span>
+                    <Button
+                        variant="cgray"
+                        className="w-full flex justify-center items-center"
+                    >
+                        <FcGoogle />
+                        <span className="ml-4">Sign in with Google</span>
                     </Button>
 
                     <p className="mt-8">

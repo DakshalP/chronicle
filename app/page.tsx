@@ -6,6 +6,7 @@ import Logo from "@/components/Logo"
 import Button from "@/components/Button"
 import { getServerSession } from "next-auth"
 import { authOptions } from "./api/auth/[...nextauth]/route"
+import LogoutButton from "@/components/auth/LogoutButton"
 
 const Header = () => (
     <header className="text-gray-600 body-font">
@@ -16,7 +17,8 @@ const Header = () => (
             </nav>
             <div className="flex gap-3">
             <Button size="small" variant="nodark" >Sign up</Button>
-            <Button size="small" variant="cbrown" href="/signin">Sign in</Button>
+            <Button size="small" variant="cbrown" href="/auth/signin">Sign in</Button>
+            <LogoutButton />
             </div>
         </div>
     </header>
