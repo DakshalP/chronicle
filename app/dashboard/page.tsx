@@ -91,7 +91,7 @@ export default async function Dashboard() {
                 <div className="xl:w-2/3 md:w-1/2 w-full rounded 2xl:p-10 p-5">
                         <div className="flex flex-col justify-center md:gap-14 gap-10 h-full">
                             <div className="font-extrabold 2xl:text-7xl text-5xl text-center">
-                                MAY 2023
+                                JUNE 2023
                             </div>
                             <div className="p-5 rounded">
                                 <dl className="grid max-w-screen-xl grid-cols-2 gap-8 p-5 md:p-0 mx-auto md:grid-cols-4 sm:p-8 2xl:text-8xl md:text-5xl text-6xl">
@@ -136,7 +136,7 @@ export default async function Dashboard() {
                         </div>
                     </div>
                     <div className="xl:w-1/3 md:w-1/2 w-full">
-                        <Calendar month={5} year={2023} className="2xl:text-lg" />
+                        <Calendar month={6} year={2023} className="2xl:text-lg" />
                     </div>
                 </div>
             </div>

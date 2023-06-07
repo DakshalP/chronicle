@@ -2,18 +2,26 @@ import { arrOfLength, cn, getDaysInMonth, getFirstWeekdayNum } from "@/lib/utils
 import Day from "./Day";
 
 const Calendar = ({ month, year, className = "" }: { month: number; year: number, className?: string}) => {
-    const monthIndex = month - 1;
 
     const selected = [6, 20, 27, 19, 22];
 
+    const monthIndex = month - 1;
+    const currentDate = new Date();
+
     const renderDays = () => {
+
         const nums = arrOfLength(getDaysInMonth(monthIndex, year)); //ex: [1, 2, ... , 31]
         const days = nums.map((dayNum) => {
-            if (selected.includes(dayNum))
-                return <Day variant="green">{dayNum}</Day>;
-            else return <Day>{dayNum}</Day>;
-        });
 
+            const isToday = year === currentDate.getFullYear() && monthIndex === currentDate.getMonth() && dayNum === currentDate.getDate()
+
+            if (selected.includes(dayNum)) {
+                return <Day variant="green" isToday={isToday}>{dayNum}</Day>;
+            }
+            else return <Day isToday={isToday}>{dayNum}</Day>;
+        });
+        
+        //start first day on correct weekday
         for (let d = 0; d < getFirstWeekdayNum(monthIndex, year); d++) {
             days.unshift(
                 <Day className="invisible" aria-hidden>

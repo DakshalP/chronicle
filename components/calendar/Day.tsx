@@ -18,12 +18,17 @@ const dayVariants = cva(
 )
 
 interface DayProps extends VariantProps<typeof dayVariants> {
+    isToday?: boolean,
     className?: string,
     children: React.ReactNode,
 }
 
-const Day: React.FunctionComponent<DayProps> = ({ variant, className, ...props}) => {
-    return <span {...props} className={cn(dayVariants({variant, className}))}/>;
+const Day: React.FunctionComponent<DayProps> = ({ isToday = false, variant, className, children,...props}) => {
+    return <span {...props} className={cn(dayVariants({variant, className}))}>
+        <span className={`${variant === 'green' && isToday ? 'bg-white text-cgreen' : isToday ? 'bg-neutral-500 dark:bg-gray-800 text-white'  : '' } md:px-2.5 md:py-0.5 px-2 aspect-square rounded-full`}>
+            {children}
+        </span>
+    </span>;
 };
 
 export default Day;
