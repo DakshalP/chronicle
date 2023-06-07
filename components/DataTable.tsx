@@ -24,12 +24,14 @@ import Input from "./Input"
  
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  data: TData[],
+  filter?: boolean,
 }
  
 export function DataTable<TData, TValue>({
   columns,
   data,
+  filter = false,
 }: DataTableProps<TData, TValue>) {
 
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -50,7 +52,7 @@ export function DataTable<TData, TValue>({
  
   return (
     <div>
-      {/* <div className="flex items-center py-4">
+      {filter ? <div className="flex items-center py-4">
         <Input
           placeholder="Filter by title..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
@@ -60,7 +62,7 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-      </div> */}
+      </div> : null}
       <div className="rounded shadow">
         <Table>
           <TableHeader>
