@@ -1,9 +1,11 @@
 import { AiOutlineAppstoreAdd } from "react-icons/ai"
 import { TbFlag3 } from "react-icons/tb"
 import { IoMdNotificationsOutline } from "react-icons/io"
-import Link from 'next/link'
+import { User } from "./user"
 import Logo from "@/components/Logo"
 import Button from "@/components/Button"
+import { getServerSession } from "next-auth"
+import { authOptions } from "./api/auth/[...nextauth]/route"
 
 const Header = () => (
     <header className="text-gray-600 body-font">
@@ -163,11 +165,15 @@ const Footer = () => (
 </footer>
 )
 
-export default function Home() {  
+export default async function Home() {  
+    const session = await getServerSession(authOptions)
     return (
-        <main>
+        <main className="text-black">
             <div className="min-h-screen flex flex-col justify-between bg-gradient-to-b from-gray-50 to-gray-100">
               <Header />
+              <h1 className="text-3xl">{JSON.stringify(session)}</h1>
+              <p>Client:</p>
+              <User />
               <Hero />
             <Statistic />
             </div>

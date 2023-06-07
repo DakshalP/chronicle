@@ -44,10 +44,12 @@ export default async function DemoPage() {
 
     return (
         <div className="min-h-screen">
-            <Calendar month={5} year={2023} />
-            <div className="container mx-auto py-10 px-5">
-                <DataTable columns={columns} data={data} />
-            </div>
+                <h1 className="text-9xl text-center font-bold font-display">
+                    MAY 2023
+                </h1>
+                <div className="container mx-auto py-10 px-5">
+                    <DataTable columns={columns} data={data} filter={true} />
+                </div>
         </div>
     );
 }

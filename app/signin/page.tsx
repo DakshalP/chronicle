@@ -1,4 +1,6 @@
 import { FcGoogle } from "react-icons/fc"
+import Button from "@/components/Button";
+import Input from "@/components/Input";
 
 export default function SignIn() {
     return (
@@ -12,7 +14,7 @@ export default function SignIn() {
             </div>
 
             <div
-                className="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:w-2/3 xl:w-1/3 h-screen px-20 md:px-16 xl:px-24
+                className="w-full md:max-w-md lg:max-w-full md:mx-auto md:w-2/3 xl:w-1/3 h-screen px-20 md:px-16 xl:px-24
         flex items-center justify-center"
             >
                 <div className="w-full h-100">
@@ -22,15 +24,14 @@ export default function SignIn() {
 
                     <form className="mt-6" action="#" method="POST">
                         <div>
-                            <label className="block text-gray-700">
+                            <label className="block">
                                 Email Address
                             </label>
-                            <input
+                            <Input
                                 type="email"
                                 name=""
                                 id=""
                                 placeholder="Enter Email Address"
-                                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                                 autoFocus
                                 autoComplete="true"
                                 required
@@ -38,17 +39,15 @@ export default function SignIn() {
                         </div>
 
                         <div className="mt-4">
-                            <label className="block text-gray-700">
+                            <label className="block">
                                 Password
                             </label>
-                            <input
+                            <Input
                                 type="password"
                                 name=""
                                 id=""
                                 placeholder="Enter Password"
                                 minLength={6}
-                                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-                focus:bg-white focus:outline-none"
                                 required
                             />
                         </div>
@@ -62,32 +61,27 @@ export default function SignIn() {
                             </a>
                         </div>
 
-                        <button
+                        <Button 
+                            variant="cbrown"
                             type="submit"
-                            className="w-full block bg-cbrown hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
-              px-4 py-3 mt-6"
+                            className="w-full"
                         >
                             Log In
-                        </button>
+                        </Button>
                     </form>
 
                     <hr className="my-6 border-gray-300 w-full" />
 
-                    <button
-                        type="button"
-                        className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
-                    >
-                        <div className="flex items-center justify-center">
+                    <Button variant="cgray" className="w-full flex justify-center items-center">
                             <FcGoogle />
                             <span className="ml-4">Log in with Google</span>
-                        </div>
-                    </button>
+                    </Button>
 
                     <p className="mt-8">
                         Need an account?{" "}
                         <a
                             href="#"
-                            className="text-cgreen hover:text-blue-700 font-semibold"
+                            className="text-cgreen dark:text-white hover:text-cgreen-light font-semibold"
                         >
                             Create an account
                         </a>
