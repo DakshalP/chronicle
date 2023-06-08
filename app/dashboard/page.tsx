@@ -4,6 +4,8 @@ import Month from "@/components/dashboard/Month";
 import { DataTable } from "@/components/DataTable";
 
 import { Entry, columns } from "./[month]/columns";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 async function getData(): Promise<Entry[]> {
     // Fetch data from your API here.
@@ -84,6 +86,7 @@ async function getData(): Promise<Entry[]> {
 
 export default async function Dashboard() {
     const data = await getData();
+    const session = await getServerSession(authOptions);
     return (
         <>
             <div className="bg-stone-200 dark:bg-gray-800 xl:p-10 p-5 mx-auto">

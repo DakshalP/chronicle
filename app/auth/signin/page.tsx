@@ -1,12 +1,27 @@
 'use client'
-import { getCsrfToken } from "next-auth/react";
-import Image from "next/image";
+
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import { signIn, useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-export default async function SignIn({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
-    const csrfToken = await getCsrfToken();
+export default function SignIn({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
     const { error } = searchParams;
+    const { data: session } = useSession();
+    const { register, handleSubmit, formState: {isSubmitted} } = useForm<Inputs>();
+
+    if(!!session) redirect("/dashboard")
+
+
+    type Inputs = {
+        email: string,
+        password: string,
+    }
+
+    const onSubmit: SubmitHandler<Inputs> = ({email, password}) => {
+        signIn("credentials", { email: email, password: password })
+    };
 
     return (
         <section className="flex flex-col md:flex-row h-screen items-center">
@@ -29,21 +44,22 @@ export default async function SignIn({ searchParams }: { searchParams: { [key: s
 
                    {error ?  <p className="p-2 my-2 bg-red-600 rounded font-bold text-white">There was an error signing in. Please try again.</p> : null}
 
-                    <form className="mt-6 space-y-6" action={`${process.env.BASE_URL}/api/auth/callback/credentials-login`} method="POST">
-                        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+                    <form className="mt-6 space-y-6" onSubmit={handleSubmit(onSubmit)}>
                         <div>
                             <label className="block">Email Address</label>
                             <Input
-                                name="email"
-                                type="text"
+                                type="email"
+                                required
+                                {...register("email")}
                             />
                         </div>
 
                         <div className="mt-4">
                             <label className="block">Password</label>
                             <Input
-                                name="password"
                                 type="password"
+                                required
+                                {...register("password")}
                             />
                         </div>
 
@@ -56,7 +72,7 @@ export default async function SignIn({ searchParams }: { searchParams: { [key: s
                             </a>
                         </div>
 
-                        <Button variant="cbrown" className="w-full" type="submit">Sign in</Button>
+                        <Button variant="cbrown" className="w-full" type="submit" disabled={isSubmitted}>{isSubmitted ? 'Loading...' : 'Sign in'}</Button>
                     </form>
 
                     <hr className="my-6 border-gray-300 w-full" />

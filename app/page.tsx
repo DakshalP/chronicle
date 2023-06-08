@@ -1,13 +1,12 @@
 import { AiOutlineAppstoreAdd } from "react-icons/ai"
 import { TbFlag3 } from "react-icons/tb"
 import { IoMdNotificationsOutline } from "react-icons/io"
-import { User } from "./user"
 import Logo from "@/components/Logo"
 import Button from "@/components/Button"
 import { getServerSession } from "next-auth"
 import { authOptions } from "./api/auth/[...nextauth]/route"
-import LogoutButton from "@/components/auth/LogoutButton"
 import Image from "next/image"
+import { redirect } from "next/navigation"
 
 const Header = () => (
     <header className="text-gray-600 body-font">
@@ -19,7 +18,6 @@ const Header = () => (
             <div className="flex gap-3">
             <Button size="small" variant="nodark" >Sign up</Button>
             <Button size="small" variant="cbrown" href="/auth/signin">Sign in</Button>
-            <LogoutButton />
             </div>
         </div>
     </header>
@@ -37,7 +35,7 @@ const Hero = () => (
                 </p>
                 <div className="flex justify-center gap-3">
                     <Button variant={"cgreen"} href="/dashboard">Get Started</Button>
-                    <Button href="/signin" variant="nodark">Sign in</Button>                    
+                    <Button href="/auth/signin" variant="nodark">Sign in</Button>            
                 </div>
             </div>
             <div className="lg:w-2/3 md:w-1/2 w-5/6">
@@ -168,15 +166,15 @@ const Footer = () => (
 </footer>
 )
 
-export default async function Home() {  
-    const session = await getServerSession(authOptions)
+export default async function Home() {
+    const session = await getServerSession(authOptions);
+
+    if(!!session) redirect("/dashboard")
+
     return (
         <main className="text-black">
             <div className="min-h-screen flex flex-col justify-between bg-gradient-to-b from-gray-50 to-gray-100">
               <Header />
-              <h1 className="text-3xl">{JSON.stringify(session)}</h1>
-              <p>Client:</p>
-              <User />
               <Hero />
             <Statistic />
             </div>
