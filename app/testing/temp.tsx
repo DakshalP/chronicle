@@ -9,7 +9,7 @@ async function getUsers() {
       <main>
         <h1>Hello there!</h1>
         {data.map(post => (
-          <h1>{post.email}</h1>
+          <h1 key={post.id}>{post.email}</h1>
         ))}
       </main>
     )

@@ -16,9 +16,9 @@ const Calendar = ({ month, year, className = "" }: { month: number; year: number
             const isToday = year === currentDate.getFullYear() && monthIndex === currentDate.getMonth() && dayNum === currentDate.getDate()
 
             if (selected.includes(dayNum)) {
-                return <Day variant="green" isToday={isToday}>{dayNum}</Day>;
+                return <Day key={dayNum} variant="green" isToday={isToday}>{dayNum}</Day>;
             }
-            else return <Day isToday={isToday}>{dayNum}</Day>;
+            else return <Day key={dayNum} isToday={isToday}>{dayNum}</Day>;
         });
         
         //start first day on correct weekday

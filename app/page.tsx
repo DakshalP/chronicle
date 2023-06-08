@@ -7,6 +7,7 @@ import Button from "@/components/Button"
 import { getServerSession } from "next-auth"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import LogoutButton from "@/components/auth/LogoutButton"
+import Image from "next/image"
 
 const Header = () => (
     <header className="text-gray-600 body-font">
