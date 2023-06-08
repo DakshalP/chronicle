@@ -1,20 +1,12 @@
 'use client'
-
-import { FcGoogle } from "react-icons/fc";
+import { getCsrfToken } from "next-auth/react";
+import Image from "next/image";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import { FormEvent, useState } from "react";
-import { signIn } from "next-auth/react";
 
-export default async function SignIn() {
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState("");
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        signIn("credentials-login", { email, password });
-    };
+export default async function SignIn({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+    const csrfToken = await getCsrfToken();
+    const { error } = searchParams;
 
     return (
         <section className="flex flex-col md:flex-row h-screen items-center">
@@ -35,31 +27,23 @@ export default async function SignIn() {
                         Sign in to your account
                     </h1>
 
-                    <form className="mt-6" >
-                        <input name="csrfToken" type="hidden" />
+                   {error ?  <p className="p-2 my-2 bg-red-600 rounded font-bold text-white">There was an error signing in. Please try again.</p> : null}
+
+                    <form className="mt-6 space-y-6" action={`${process.env.BASE_URL}/api/auth/callback/credentials-login`} method="POST">
+                        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
                         <div>
                             <label className="block">Email Address</label>
-                            <input
-                                id="email"
+                            <Input
                                 name="email"
                                 type="text"
-                                placeholder="Enter email"
-                                // onChange={(e) => setEmail(e.target.value)}
-                                // value={email}
-                                autoComplete="false"
                             />
                         </div>
 
                         <div className="mt-4">
                             <label className="block">Password</label>
                             <Input
+                                name="password"
                                 type="password"
-                                name=""
-                                id=""
-                                placeholder="Enter Password"
-                                required
-                                // value={password}
-                                // onChange={e => setPassword(e.target.value)}
                             />
                         </div>
 
@@ -72,18 +56,18 @@ export default async function SignIn() {
                             </a>
                         </div>
 
-                        <Button type="submit" variant="cbrown" className="w-full">Sign in</Button>
+                        <Button variant="cbrown" className="w-full" type="submit">Sign in</Button>
                     </form>
 
                     <hr className="my-6 border-gray-300 w-full" />
 
-                    <Button
+                    {/* <Button
                         variant="cgray"
                         className="w-full flex justify-center items-center"
                     >
                         <FcGoogle />
                         <span className="ml-4">Sign in with Google</span>
-                    </Button>
+                    </Button> */}
 
                     <p className="mt-8">
                         Need an account?{" "}
