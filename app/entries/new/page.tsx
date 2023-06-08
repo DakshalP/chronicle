@@ -20,7 +20,7 @@ export default function NewEntry() {
                 </div>
                 <div>
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Date</label>
-                    <Input />
+                    <Input type="date" />
                 </div>
                 <div>
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Hours</label>

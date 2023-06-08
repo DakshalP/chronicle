@@ -42,21 +42,25 @@ export default function SignIn({ searchParams }: { searchParams: { [key: string]
                         Sign in to your account
                     </h1>
 
-                   {error ?  <p className="p-2 my-2 bg-red-600 rounded font-bold text-white">There was an error signing in. Please try again.</p> : null}
+                   {!!error ?  <p tabIndex={1} autoFocus className="p-2 my-2 bg-red-700 rounded outline-none focus:ring-4 ring-red-300 font-bold text-white">There was an error signing in. Please try again.</p> : null}
 
                     <form className="mt-6 space-y-6" onSubmit={handleSubmit(onSubmit)}>
                         <div>
-                            <label className="block">Email Address</label>
+                            <label htmlFor="email" className="block">Email</label>
                             <Input
+                                id="email"
                                 type="email"
+                                autoFocus={!error}
+                                placeholder="example@domain.com"
                                 required
                                 {...register("email")}
                             />
                         </div>
 
                         <div className="mt-4">
-                            <label className="block">Password</label>
+                            <label htmlFor="password" className="block">Password</label>
                             <Input
+                                id="password"
                                 type="password"
                                 required
                                 {...register("password")}
