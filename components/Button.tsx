@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ButtonHTMLAttributes } from "react"
+import { ButtonHTMLAttributes, forwardRef } from "react"
 import { VariantProps, cva } from 'class-variance-authority'
 import { cn } from "@/lib/utils";
 
@@ -38,7 +38,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, Va
 }
 
 
-const Button: React.FunctionComponent<ButtonProps> = ({
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     variant,
     size,
     href,
@@ -46,7 +46,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({
     className,
     onClick,
     ...buttonProps
-}) => {
+}, ref) => {
     const router = useRouter();
 
     const getOnClick = () => {
@@ -57,12 +57,13 @@ const Button: React.FunctionComponent<ButtonProps> = ({
 
     return (
         <button
+            ref={ref}
             className={cn(buttonVariants({ variant, size, className }))}
             onClick={getOnClick()}
             type={type}
             {...buttonProps}
         />
     );
-};
+})
 
 export default Button;

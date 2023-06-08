@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react"
+import { InputHTMLAttributes, forwardRef } from "react"
 import { VariantProps, cva } from 'class-variance-authority'
 import { cn } from "@/lib/utils";
 
@@ -22,14 +22,14 @@ const inputVariants = cva(
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof inputVariants> {}
 
 
-const Input: React.FunctionComponent<InputProps> = ({
+const Input = forwardRef<HTMLInputElement, InputProps>(({
     variant,
     className,
     ...inputProps
-}) => {
-    return (            
-            <input className={cn(inputVariants({variant, className}))} {...inputProps} />
+}, ref) => {
+    return (    
+            <input ref={ref} className={cn(inputVariants({variant, className}))} {...inputProps} />
     );
-};
+})
 
 export default Input;
