@@ -5,11 +5,11 @@ import { FiBook, FiClock } from "react-icons/fi";
 import Link from "next/link"
 
 const LinkObj: object = {
-    "Service Log": [<FiBook key={1} className="w-8 h-8" />, "/dashboard"],
-    "Coming Soon": [<FiClock key={2} className="w-8 h-8" />, "/dashboard/coming-soon"],
-    // "Hour Goals": [<RiFlag2Line className="w-8 h-8" />, "/dashboard/coming-soon"],
-    // "Notifications": [<IoMdNotificationsOutline className="w-8 h-8" />, "/dashboard/coming-soon"],
-    // "Return Visits": [<HiOutlineLocationMarker className="w-8 h-8" />, "/dashboard/coming-soon"],
+    "Service log": [<FiBook key={1} className="w-6 h-6" />, "/dashboard"],
+    "Coming soon": [<FiClock key={2} className="w-6 h-6" />, "/dashboard/coming-soon"],
+    // "Hour Goals": [<RiFlag2Line className="w-6 h-6" />, "/dashboard/coming-soon"],
+    // "Notifications": [<IoMdNotificationsOutline className="w-6 h-6" />, "/dashboard/coming-soon"],
+    // "Return Visits": [<HiOutlineLocationMarker className="w-6 h-6" />, "/dashboard/coming-soon"],
 };
 
 const NavLink = ({ properties, label }: { properties: Array<any>; label: string}) => (
