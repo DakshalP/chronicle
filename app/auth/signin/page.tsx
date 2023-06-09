@@ -1,10 +1,14 @@
 'use client'
 
 import Button from "@/components/Button";
+import Image from "next/image";
 import Input from "@/components/Input";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
+
+
+import signinImage from "/public/pen.jpg"
 
 export default function SignIn({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
     const { error } = searchParams;
@@ -26,8 +30,8 @@ export default function SignIn({ searchParams }: { searchParams: { [key: string]
     return (
         <section className="flex flex-col md:flex-row h-screen items-center">
             <div className="bg-cgreen hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-                <img
-                    src="/pen.jpg"
+                <Image
+                    src={signinImage}
                     alt="a calligraphy pen"
                     className="w-full h-full object-cover"
                 />

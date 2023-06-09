@@ -8,6 +8,8 @@ import { authOptions } from "./api/auth/[...nextauth]/route"
 import Image from "next/image"
 import { redirect } from "next/navigation"
 
+import heroImage from "/public/journal.jpg"
+
 const Header = () => (
     <header className="text-gray-600 body-font">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -39,7 +41,7 @@ const Hero = () => (
                 </div>
             </div>
             <div className="lg:w-2/3 md:w-1/2 w-5/6">
-                <img className="object-cover object-center rounded" alt="hero" src="/journal.jpg" />
+                <Image className="object-cover object-center rounded" alt="hero" src={heroImage} />
             </div>
         </div>
     </div>

@@ -1,10 +1,13 @@
+import Image from "next/image";
+
+import signinImage from "/public/pen.jpg"
 
 export default async function Dashboard() {
     return (
         <section className="flex flex-col md:flex-row h-screen items-center">
             <div className="bg-cgreen hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-                <img
-                    src="/pen.jpg"
+                <Image
+                    src={signinImage}
                     alt="a calligraphy pen"
                     className="w-full h-full object-cover"
                 />
