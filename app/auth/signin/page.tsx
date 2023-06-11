@@ -9,6 +9,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 
 import signinImage from "/public/pen.jpg"
+import Link from "next/link";
 
 export default function SignIn({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
     const { error } = searchParams;
@@ -38,7 +39,7 @@ export default function SignIn({ searchParams }: { searchParams: { [key: string]
             </div>
 
             <div
-                className="w-full md:max-w-md lg:max-w-full md:mx-auto md:w-2/3 xl:w-1/3 h-screen px-20 md:px-16 xl:px-24
+                className="w-full md:max-w-md lg:max-w-full md:mx-auto md:w-2/3 xl:w-1/3 h-screen px-14 md:px-16 xl:px-24
         flex items-center justify-center"
             >
                 <div className="w-full h-100">
@@ -48,9 +49,9 @@ export default function SignIn({ searchParams }: { searchParams: { [key: string]
 
                    {!!error ?  <p tabIndex={1} autoFocus className="p-2 my-2 bg-red-700 rounded outline-none focus:ring-4 ring-red-300 font-bold text-white">There was an error signing in. Please try again.</p> : null}
 
-                    <form className="mt-6 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="mt-10 space-y-8" onSubmit={handleSubmit(onSubmit)}>
                         <div>
-                            <label htmlFor="email" className="block">Email</label>
+                            <label htmlFor="email" className="block font-semibold">Email</label>
                             <Input
                                 id="email"
                                 type="email"
@@ -61,8 +62,8 @@ export default function SignIn({ searchParams }: { searchParams: { [key: string]
                             />
                         </div>
 
-                        <div className="mt-4">
-                            <label htmlFor="password" className="block">Password</label>
+                        <div>
+                            <label htmlFor="password" className="block font-semibold">Password</label>
                             <Input
                                 id="password"
                                 type="password"
@@ -71,7 +72,7 @@ export default function SignIn({ searchParams }: { searchParams: { [key: string]
                             />
                         </div>
 
-                        <div className="text-right mt-2">
+                        <div className="text-right">
                             <a
                                 href="#"
                                 className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
@@ -95,12 +96,12 @@ export default function SignIn({ searchParams }: { searchParams: { [key: string]
 
                     <p className="mt-8">
                         Need an account?{" "}
-                        <a
-                            href="#"
+                        <Link
+                            href="/auth/signup"
                             className="text-cgreen dark:text-white hover:text-cgreen-light font-semibold"
                         >
                             Create an account
-                        </a>
+                        </Link>
                     </p>
                 </div>
             </div>
