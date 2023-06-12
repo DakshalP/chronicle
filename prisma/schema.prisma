@@ -12,32 +12,24 @@ datasource db {
 }
 
 model User {
-  id         Int         @id @default(autoincrement())
-  email      String      @unique
-  password   String
-  name       String?
-  serviceLog ServiceLog?
-}
-
-model ServiceLog {
-  id      Int            @id @default(autoincrement())
-  entries ServiceEntry[]
-  User    User           @relation(fields: [userId], references: [id])
-  userId  Int            @unique
+  id       Int            @id @default(autoincrement())
+  email    String         @unique
+  password String
+  entries  ServiceEntry[]
 }
 
 model ServiceEntry {
-  id           Int         @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   //required
   date         DateTime
   hours        Decimal
-  videos       Int         @default(0)
-  publications Int         @default(0)
-  returnVisits Int         @default(0)
+  videos       Int      @default(0)
+  publications Int      @default(0)
+  returnVisits Int      @default(0)
   //optional
-  title        String?     @db.VarChar(50)
-  comments     String?     @db.VarChar(500)
+  title        String?  @db.VarChar(50)
+  comments     String?  @db.VarChar(500)
   //----//
-  Log          ServiceLog? @relation(fields: [logId], references: [id])
-  logId        Int?
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int      @unique
 }
