@@ -6,7 +6,6 @@ import { IoMdClose } from "react-icons/io"
 import Input from "@/components/Input"
 import TextArea from "@/components/TextArea"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { useSession } from "next-auth/react"
 import { useState } from "react"
 import { dateFromYYYYMMDD } from "@/lib/utils"
 
@@ -18,6 +17,7 @@ type Inputs = {
     videos: number,
     returnVisits: number, 
     comments: string,
+    [key: string]: string | number
 }
 
 const sumConvert = (x: any, y: any) => {
@@ -25,22 +25,19 @@ const sumConvert = (x: any, y: any) => {
 }
 
 export default function NewEntry() {
-    const { data: session } = useSession();
     const [successful, setSuccessful] = useState(false);
     const { register, handleSubmit, setValue, watch, formState: { errors, isSubmitting } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
-        //only run when session available
-        const userId = session?.user.id
+        //fill in default 0 and cast to number if needed
+        for (let key of Object.keys(inputs)) {
+            if(["hours", "publications", "videos", "returnVisits"].includes(key)) {
+                inputs[key] = Number(inputs[key]) || 0
+            }
+        }
 
-        //fill in defaults on submit
-        if(!inputs.hours) inputs.hours = 0;
-        if(!inputs.publications) inputs.publications = 0;
-        if(!inputs.videos) inputs.videos = 0;
-        if(!inputs.returnVisits) inputs.returnVisits = 0;
-
-        const data = await fetch('/api/entry', {
+        const data = await fetch('/api/entries', {
             method: "POST",
-            body: JSON.stringify({ userId, ...inputs })
+            body: JSON.stringify(inputs)
         })
         const res = await data.json()
         if(!data.ok) {
@@ -54,7 +51,7 @@ export default function NewEntry() {
         <div className={` flex justify-center items-center min-h-screen  bg-gradient-to-tr from-gray-300 to-cgray-dark dark:from-gray-500 dark:via-gray-600 dark:to-gray-700`}>
             <div className={`fixed transition-all h-screen w-screen flex flex-col gap-5 items-center justify-center p-2 duration-200 ${successful ? '' : ' translate-y-10 opacity-0 h-0'}`}>
                 <h1 className="font-bold md:text-7xl text-6xl font-display">Time recorded!</h1>
-                <p>+{`${watch('hours') || 0} hours recorded for ${dateFromYYYYMMDD(watch('dateStr') || '0000-00-00').toLocaleDateString()}.`}</p>
+                <p>+{`${watch('hours') || 0} hours recorded for ${dateFromYYYYMMDD(watch('dateStr') ?? '0000-00-00').toLocaleDateString()}.`}</p>
                 <Button href="/dashboard" variant="cgreen">Return to dashboard</Button>
             </div>
             <div className={` ${successful ? 'hidden' : ''} relative w-full lg:h-fit h-full max-w-4xl lg:mx-10 md:m-5 bg-cgray-light lg:border border-gray-200 md:rounded-lg lg:shadow lg:p-9 p-10 dark:bg-gray-800 dark:border-gray-700`}>
@@ -112,7 +109,7 @@ export default function NewEntry() {
                     <TextArea maxLength={500} {...register("comments")} placeholder="Optional notes" />
                 </div>
                 <div className="flex gap-4">
-                <Button className="w-full" variant={"cbrown"} type="submit" disabled={!session || successful || isSubmitting}>{!isSubmitting ? 'Submit' : 'Submitting...'}</Button>
+                <Button className="w-full" variant={"cbrown"} type="submit" disabled={successful || isSubmitting}>{!isSubmitting ? 'Submit' : 'Submitting...'}</Button>
                 <Button className="w-full" href="/dashboard">Cancel</Button>
                 </div>
             </form>
