@@ -5,7 +5,7 @@ import { ButtonHTMLAttributes, forwardRef } from "react"
 import { VariantProps, cva } from 'class-variance-authority'
 import { cn } from "@/lib/utils";
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
     "rounded text-center tracking-wide active:ring-4 focus:ring-2 ring-0 focus:outline-none transition-colors disabled:opacity-75 disabled:pointer-events-none",
     {
         variants: {
