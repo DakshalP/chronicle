@@ -51,7 +51,7 @@ export default function SignUp() {
             body: JSON.stringify({ email, password, code })
         })
         const res = await data.json();
-        if(!res.ok) {
+        if(!data.ok) {
             console.log(res.error)
             setError("root", { message: res.message })
         }
@@ -145,6 +145,7 @@ export default function SignUp() {
                             <Input
                                 id="password"
                                 type="password"
+                                minLength={6}
                                 autoComplete="new-password"
                                 required
                                 {...register("password")}
@@ -161,6 +162,7 @@ export default function SignUp() {
                             <Input
                                 id="confirm_password"
                                 type="password"
+                                minLength={6}
                                 required
                                 {...register("confirm_password", {
                                     validate: (val: string) => {

@@ -6,7 +6,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 export const authOptions: NextAuthOptions = {
   pages: {
     'signIn': '/auth/signin',
-    'error': '/auth/error',
+    'error': '/auth/error'
   },
   session: {
     strategy: 'jwt'
@@ -42,7 +42,6 @@ export const authOptions: NextAuthOptions = {
         return {
             id: user.id + '',
             email: user.email,
-            name: user.name
             //randomKey: 'can add some more information to the session token'
         }
 

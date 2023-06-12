@@ -6,10 +6,13 @@ import { IoMdClose } from "react-icons/io"
 import Input from "@/components/Input"
 import TextArea from "@/components/TextArea"
 import { useForm, SubmitHandler } from "react-hook-form"
+import { useSession } from "next-auth/react"
+import { useState } from "react"
+import { dateFromYYYYMMDD } from "@/lib/utils"
 
 type Inputs = {
     title: string,
-    date: string,
+    dateStr: string,
     hours: number,
     publications: number,
     videos: number,
@@ -18,17 +21,43 @@ type Inputs = {
 }
 
 const sumConvert = (x: any, y: any) => {
-    if(y < 0 && x <= 1) return 0;
     return +x + +y
 }
 
 export default function NewEntry() {
-    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data =>  console.log(data)
+    const { data: session } = useSession();
+    const [successful, setSuccessful] = useState(false);
+    const { register, handleSubmit, setValue, watch, formState: { errors, isSubmitting } } = useForm<Inputs>();
+    const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
+        //only run when session available
+        const userId = session?.user.id
 
+        //fill in defaults on submit
+        if(!inputs.hours) inputs.hours = 0;
+        if(!inputs.publications) inputs.publications = 0;
+        if(!inputs.videos) inputs.videos = 0;
+        if(!inputs.returnVisits) inputs.returnVisits = 0;
+
+        const data = await fetch('/api/entry', {
+            method: "POST",
+            body: JSON.stringify({ userId, ...inputs })
+        })
+        const res = await data.json()
+        if(!data.ok) {
+            console.log(res)
+        }
+        else {
+            setSuccessful(true)
+        }
+    }
     return (
-        <div className="flex justify-center items-center min-h-screen  bg-gradient-to-tr from-gray-300 to-cgray-dark dark:from-gray-500 dark:via-gray-600 dark:to-gray-700">
-            <div className="relative w-full lg:h-fit h-full max-w-4xl lg:mx-10 md:m-5 bg-cgray-light lg:border border-gray-200 md:rounded-lg lg:shadow lg:p-9 p-10 dark:bg-gray-800 dark:border-gray-700">
+        <div className={` flex justify-center items-center min-h-screen  bg-gradient-to-tr from-gray-300 to-cgray-dark dark:from-gray-500 dark:via-gray-600 dark:to-gray-700`}>
+            <div className={`fixed transition-all h-screen w-screen flex flex-col gap-5 items-center justify-center p-2 duration-200 ${successful ? '' : ' translate-y-10 opacity-0 h-0'}`}>
+                <h1 className="font-bold md:text-7xl text-6xl font-display">Time recorded!</h1>
+                <p>+{`${watch('hours') || 0} hours recorded for ${dateFromYYYYMMDD(watch('dateStr') || '0000-00-00').toLocaleDateString()}.`}</p>
+                <Button href="/dashboard" variant="cgreen">Return to dashboard</Button>
+            </div>
+            <div className={` ${successful ? 'hidden' : ''} relative w-full lg:h-fit h-full max-w-4xl lg:mx-10 md:m-5 bg-cgray-light lg:border border-gray-200 md:rounded-lg lg:shadow lg:p-9 p-10 dark:bg-gray-800 dark:border-gray-700`}>
                 <div className="absolute top-0 right-0 p-5">
                     <Link href="/dashboard"> <IoMdClose className="w-10 h-10 active:text-cgreen text-cgray-outline dark:text-gray-500"/> </Link>
                 </div>
@@ -38,13 +67,13 @@ export default function NewEntry() {
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Date</label>
                     <Input
                     defaultValue={new Date(new Date().setHours(0,0,0,0)).toISOString().substring(0, 10)}
-                    {...register("date", {
+                    {...register("dateStr", {
                         valueAsDate: false
                     })} type="date" />
                 </div>
                 <div>
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Title</label>
-                    <Input autoFocus maxLength={50} {...register("title")} placeholder="Optional title (Ex: George's study)" />
+                    <Input autoFocus maxLength={50} {...register("title")} placeholder="Optional title" />
                 </div>
                 <div>
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Hours</label>
@@ -83,8 +112,8 @@ export default function NewEntry() {
                     <TextArea maxLength={500} {...register("comments")} placeholder="Optional notes" />
                 </div>
                 <div className="flex gap-4">
-                <Button className="w-full" variant={"cbrown"} type="submit">Submit</Button>
-                <Button className="w-full">Cancel</Button>
+                <Button className="w-full" variant={"cbrown"} type="submit" disabled={!session || successful || isSubmitting}>{!isSubmitting ? 'Submit' : 'Submitting...'}</Button>
+                <Button className="w-full" href="/dashboard">Cancel</Button>
                 </div>
             </form>
         </div>

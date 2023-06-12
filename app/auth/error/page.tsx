@@ -1,7 +1,5 @@
-const Error = () => {
+export default function Error() {
   return (
-    <div>There was an authorization error.</div>
+    <p>There was an error</p>
   )
 }
-
-export default Error
