@@ -1,4 +1,4 @@
-import SideBar from "@/components/dashboard/SideBar";
+import SideBar from "@/components/dashboard/nav/SideBar";
 import YearTotal from "@/components/dashboard/YearTotal";
 
 const DesktopNav = () => (

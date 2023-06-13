@@ -7,6 +7,7 @@ const dayVariants = cva(
         variants: {
             variant: {
                 default: "bg-neutral-200 text-neutral-400 dark:bg-gray-700 dark:text-gray-500",
+                blank: "bg-neutral-200 text-neutral-200 dark:bg-gray-700 dark:text-gray-700",
                 header: "bg-inherit",
                 green: "bg-cgreen text-white",
             }                

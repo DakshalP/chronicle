@@ -3,8 +3,11 @@ import Day from "./Day";
 
 import prisma from "@/prisma/client";
 
-const Calendar = ({ month, year, selectedDays, className = "" }: { month: number; year: number, selectedDays: number[], className?: string}) => {
+type Props = { loading: boolean, month: number; year: number, selectedDays: number[], className?: string}
 
+const Calendar = ({ loading, month, year, selectedDays, className = "" }: Props) => {
+
+    if(loading) selectedDays = []
     const monthIndex = month - 1;
     const currentDate = new Date();
 
@@ -13,12 +16,18 @@ const Calendar = ({ month, year, selectedDays, className = "" }: { month: number
         const nums = arrOfLength(getDaysInMonth(monthIndex, year)); //ex: [1, 2, ... , 31]
         const days = nums.map((dayNum) => {
 
-            const isToday = year === currentDate.getFullYear() && monthIndex === currentDate.getMonth() && dayNum === currentDate.getDate()
+            if(loading) {
+                return <Day variant="blank" key={dayNum}>_</Day>;
+            }
 
+            const isToday = year === currentDate.getFullYear() && monthIndex === currentDate.getMonth() && dayNum === currentDate.getDate()
+            
             if (selectedDays.includes(dayNum)) {
                 return <Day key={dayNum} variant="green" isToday={isToday}>{dayNum}</Day>;
             }
-            else return <Day key={dayNum} isToday={isToday}>{dayNum}</Day>;
+            else {
+                return <Day key={dayNum} isToday={isToday}>{dayNum}</Day>;
+            }
         });
         
         //start first day on correct weekday
@@ -33,8 +42,10 @@ const Calendar = ({ month, year, selectedDays, className = "" }: { month: number
         return days;
     };
 
+    const baseStyles = `xl:p-10 lg:p-5 p-5 w-full bg-white md:dark:bg-gray-900 dark:bg-gray-900 md:mb-0 mb-10 rounded text-sm ${loading ? 'animate-pulse' : ''}`
+
     return (
-        <div className={cn("xl:p-10 lg:p-5 p-5 w-full bg-white md:dark:bg-gray-900 dark:bg-gray-900 md:mb-0 mb-10 rounded text-sm", className)}>
+        <div className={cn(baseStyles, className)}>
             <span className="grid grid-cols-7 font-bold">
                 <Day variant="header">S</Day>
                 <Day variant="header">M</Day>

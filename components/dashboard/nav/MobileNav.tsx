@@ -2,7 +2,7 @@
 import NewButton from "@/components/dashboard/NewButton";
 import { useState } from "react";
 import { RiMenu2Line } from "react-icons/ri";
-import NavLinks from "../NavLinks";
+import NavLinks from "./NavLinks";
 import Logo from "@/components/Logo";
 import { IoMdClose } from "react-icons/io";
 import YearTotal from "../YearTotal";
@@ -63,7 +63,7 @@ const MobileNav = () => {
             <div
                 className={`w-full flex flex-row ${
                     menuOpen ? "hidden" : ""
-                } bg-cgray-light dark:bg-gray-900 justify-evenly items-center`}
+                } bg-cgray-light dark:bg-gray-600 justify-evenly items-center`}
             >
                 <MenuToggle menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
                 <NewButton />
