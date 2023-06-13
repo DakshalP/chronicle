@@ -1,92 +1,44 @@
 import Button from "@/components/Button";
 import Calendar from "@/components/calendar/Calendar";
 import Month from "@/components/dashboard/Month";
-import { DataTable } from "@/components/DataTable";
 
-import { Entry, columns } from "./[month]/columns";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-
-async function getData(): Promise<Entry[]> {
-    // Fetch data from your API here.
-    return [
-        {
-            id: 1,
-            date: new Date(),
-            hours: 1,
-            videos: 2,
-            publications: 3,
-            returnVisits: 4,
-            title: "George's Study",
-            comments: "These are some loooooonng comments \n \n really a lot.",
-        },
-        {
-            id: 1,
-            date: new Date(),
-            hours: 13,
-            videos: 22,
-            publications: 34,
-            returnVisits: 42,
-            title: "Somebody Long Name's Study",
-            comments:
-                "asdfasdfasdfasdfasd asdfasdf asdf some loooooonng comments \n \n really a lot.",
-        },
-        {
-            id: 1,
-            date: new Date(),
-            hours: 13,
-            videos: 22,
-            publications: 34,
-            returnVisits: 42,
-            title: "Metropolitan Witnessing",
-            comments: "small",
-        },
-        {
-            id: 1,
-            date: new Date(),
-            hours: 1,
-            videos: 2,
-            publications: 3,
-            returnVisits: 4,
-            title: "George's Study",
-            comments: "These are some loooooonng comments \n \n really a lot.",
-        },
-        {
-            id: 1,
-            date: new Date(),
-            hours: 1,
-            videos: 2,
-            publications: 3,
-            returnVisits: 4,
-            title: "George's Study",
-            comments: "These are some loooooonng comments \n \n really a lot.",
-        },
-        {
-            id: 1,
-            date: new Date(),
-            hours: 1,
-            videos: 2,
-            publications: 3,
-            returnVisits: 4,
-            title: "George's Study",
-            comments: "These are some loooooonng comments \n \n really a lot.",
-        },
-        {
-            id: 1,
-            date: new Date(),
-            hours: 1,
-            videos: 2,
-            publications: 3,
-            returnVisits: 4,
-            title: "George's Study",
-            comments: "These are some loooooonng comments \n \n really a lot.",
-        },
-    ];
-}
+import prisma from "@/prisma/client";
+import { getDayRangeOfMonth, monthIndexToWord } from "@/lib/utils";
 
 export default async function Dashboard() {
-    const data = await getData();
     const session = await getServerSession(authOptions);
+    if(!session) return;
+
+    const currentMonth = new Date().getMonth() + 1
+    const currentYear = new Date().getFullYear()
+    
+    const currentStats = await prisma.serviceEntry.aggregate({
+        _sum: {
+            hours: true,
+            publications: true,
+            videos: true,
+            returnVisits: true
+        },
+        where: {
+            date: getDayRangeOfMonth(currentMonth, currentYear), 
+            userId: parseInt(session.user.id)
+        }
+    })
+    
+    const entries = await prisma.serviceEntry.findMany({
+        select: {
+            date: true
+        },
+        where: {
+            date: getDayRangeOfMonth(currentMonth, currentYear),
+            userId: parseInt(session.user.id)
+        }
+    })
+    
+    const selectedDays = entries.map(entry => entry.date.getDate())
+
     return (
         <>
             <div className="bg-stone-200 dark:bg-gray-800 xl:p-10 p-5 mx-auto">
@@ -94,13 +46,13 @@ export default async function Dashboard() {
                 <div className="xl:w-2/3 md:w-1/2 w-full rounded 2xl:p-10 p-5">
                         <div className="flex flex-col justify-center md:gap-14 gap-10 h-full">
                             <div className="font-extrabold 2xl:text-7xl text-5xl text-center">
-                                JUNE 2023
+                                {monthIndexToWord(currentMonth - 1)} {currentYear}
                             </div>
                             <div className="p-5 rounded">
                                 <dl className="grid max-w-screen-xl grid-cols-2 gap-8 p-5 md:p-0 mx-auto md:grid-cols-4 sm:p-8 2xl:text-8xl md:text-5xl text-6xl">
                                     <div className="flex flex-col items-center justify-center">
                                         <dt className="mb-2 font-extrabold font-display">
-                                            11.5
+                                            {Number(currentStats._sum.hours)}
                                         </dt>
                                         <dd className="2xl:font-bold text-base text-gray-500 dark:text-gray-400">
                                             Hours
@@ -108,7 +60,7 @@ export default async function Dashboard() {
                                     </div>
                                     <div className="flex flex-col items-center justify-center">
                                         <dt className="mb-2 font-extrabold font-display">
-                                            34
+                                            {Number(currentStats._sum.publications)}
                                         </dt>
                                         <dd className="2xl:font-bold text-base text-gray-500 dark:text-gray-400">
                                             Publications
@@ -116,7 +68,7 @@ export default async function Dashboard() {
                                     </div>
                                     <div className="flex flex-col items-center justify-center">
                                         <dt className="mb-2 font-extrabold font-display">
-                                            10
+                                            {Number(currentStats._sum.videos)}
                                         </dt>
                                         <dd className="2xl:font-bold text-base text-gray-500 dark:text-gray-400">
                                             Videos
@@ -124,7 +76,7 @@ export default async function Dashboard() {
                                     </div>
                                     <div className="flex flex-col items-center justify-center">
                                         <dt className="mb-2 font-extrabold font-display">
-                                            12
+                                            {Number(currentStats._sum.returnVisits)}
                                         </dt>
                                         <dd className="2xl:font-bold text-base text-gray-500 dark:text-gray-400">
                                             Returns
@@ -134,12 +86,12 @@ export default async function Dashboard() {
                             </div>
                             
                         <div className="flex justify-center">
-                            <Button href="/dashboard/may-2023">See entries</Button>
+                            <Button href={`/dashboard/${currentYear}-${currentMonth}`}>See entries</Button>
                         </div>
                         </div>
                     </div>
                     <div className="xl:w-1/3 md:w-1/2 w-full">
-                        <Calendar month={6} year={2023} className="2xl:text-lg" />
+                        <Calendar selectedDays={selectedDays} month={currentMonth} year={currentYear} className="2xl:text-lg" />
                     </div>
                 </div>
             </div>

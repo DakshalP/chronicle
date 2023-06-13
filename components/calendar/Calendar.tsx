@@ -1,9 +1,9 @@
 import { arrOfLength, cn, getDaysInMonth, getFirstWeekdayNum } from "@/lib/utils";
 import Day from "./Day";
 
-const Calendar = ({ month, year, className = "" }: { month: number; year: number, className?: string}) => {
+import prisma from "@/prisma/client";
 
-    const selected = [6, 20, 27, 19, 22];
+const Calendar = ({ month, year, selectedDays, className = "" }: { month: number; year: number, selectedDays: number[], className?: string}) => {
 
     const monthIndex = month - 1;
     const currentDate = new Date();
@@ -15,7 +15,7 @@ const Calendar = ({ month, year, className = "" }: { month: number; year: number
 
             const isToday = year === currentDate.getFullYear() && monthIndex === currentDate.getMonth() && dayNum === currentDate.getDate()
 
-            if (selected.includes(dayNum)) {
+            if (selectedDays.includes(dayNum)) {
                 return <Day key={dayNum} variant="green" isToday={isToday}>{dayNum}</Day>;
             }
             else return <Day key={dayNum} isToday={isToday}>{dayNum}</Day>;

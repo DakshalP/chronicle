@@ -28,19 +28,29 @@ const displayNum = (row: any, column: string) => (
     <span className='font-semibold'>{row.getValue(column)}</span>
 )
 
+// async function deleteEntry(id: string) {
+//     const data = await fetch(`/api/entries`, {
+//         method: "DELETE",
+//     })
+//     const res = await data.json()
+//     if(!data.ok) {
+//         console.log(res)
+//     }
+// }
+
 export const columns: ColumnDef<Entry>[] = [
     {
         accessorKey: 'date',
         header: 'Date',
         cell: ({ row }) => {
-            const date: Date = row.getValue("date")
-            const day = `${date.getMonth()+1}/${date.getDate()}`
-            return <div className="text-right">{day}</div>
+            const date: Date = new Date(row.getValue("date"))
+            return <div className="text-right">{date.toLocaleDateString()}</div>
         }
     },
     {
         accessorKey: 'title',
-        header: 'Title'
+        header: 'Title',
+        cell: ({ row }) => row.getValue('title') || <span className="italic text-gray-500">No title</span>
     },
     {
         accessorKey: 'hours',
@@ -67,11 +77,12 @@ export const columns: ColumnDef<Entry>[] = [
         header: 'Notes',
         cell: ({row}) => {
             const notes: string = row.getValue('comments')
+            if(!notes) return <span className="italic text-gray-500">No notes</span>
             return (
                 <Dialog>
                 <DialogTrigger className="dark:hover:text-gray-300 hover:text-gray-800">
                     <span className="2xl:hidden">{notes.slice(0,15) + "..."}</span>
-                    <span className="2xl:inline-block hidden">{notes.slice(0,70) + "..."}</span>
+                    <span className="2xl:inline-block hidden hover:underline">{notes.length < 70 ? notes : notes.slice(0,70) + "..."}</span>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>

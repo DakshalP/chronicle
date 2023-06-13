@@ -9,6 +9,19 @@ export const getDaysInMonth = (monthIndex: number, year: number) => new Date(yea
 
 export const getFirstWeekdayNum = (monthIndex: number, year: number) => new Date(year, monthIndex, 1).getDay();
 
+export const monthIndexToWord = (monthIndex: number) => [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ][monthIndex]
+
+export const getDayRangeOfMonth = (month: number, year: number): { lte: Date, gte: Date } => {
+    const monthIndex = month - 1
+    return {
+        gte: new Date(year, monthIndex, 1),
+        lte: new Date(year, monthIndex, getDaysInMonth(monthIndex, year))
+    }
+}
+
 //due to Date() constructor returning incorrect dates when initialized with string yyyy-mm-dd
 export const dateFromYYYYMMDD = (yyyy_mm_dd: string): Date  => 
     new Date(

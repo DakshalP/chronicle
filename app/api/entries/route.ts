@@ -1,6 +1,6 @@
-import { dateFromYYYYMMDD, getDaysInMonth } from '@/lib/utils';
+import { dateFromYYYYMMDD, getDayRangeOfMonth, getDaysInMonth } from '@/lib/utils';
 import prisma from '@/prisma/client'
-import { getServerSession } from 'next-auth';
+import { getServerSession } from 'next-auth/next';
 import { NextRequest, NextResponse } from 'next/server';
 import { authOptions } from '../auth/[...nextauth]/route';
 
@@ -15,44 +15,48 @@ type entryProps = {
     comments: string,
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, res: NextResponse) {
     try {
+        const session = await getServerSession(authOptions);
+        if (!session) return NextResponse.json({ error: "unauthorized" }, { status: 401 })
+
         const month = Number(req.nextUrl.searchParams.get("month"))
         const year = Number(req.nextUrl.searchParams.get("year"))
 
-        if(!month || !year) return NextResponse.json({ message: "Month or year not recieved"}, { status: 400 })
+        if (!month || !year) {
+            return NextResponse.json({ message: "Month or year not recieved" }, { status: 400 })
+        }
 
         const data = await prisma.serviceEntry.findMany({
             where: {
-                date: {
-                    gte: new Date(year, month - 1, 1), //first day
-                    lte: new Date(year, month - 1, getDaysInMonth(month - 1, year)) //last day
-                }
+                date: getDayRangeOfMonth(month, year),
+                userId: parseInt(session.user.id)
             }
         })
         return NextResponse.json(data, {
             status: 200
         })
     }
-    catch(e) {
+    catch (e) {
         console.log(e)
         return NextResponse.json(({ message: "Server error", error: e }), { status: 500 })
     }
 }
 
+
 export async function POST(req: Request) {
     try {
         const session = await getServerSession(authOptions);
-        if(!session) return;
+        if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
         const {
-            title, 
-            dateStr, 
-            hours, 
-            publications, 
-            videos, 
-            returnVisits, 
-            comments 
+            title,
+            dateStr,
+            hours,
+            publications,
+            videos,
+            returnVisits,
+            comments
         }: entryProps = await req.json()
 
         const date = dateFromYYYYMMDD(dateStr)
@@ -66,7 +70,7 @@ export async function POST(req: Request) {
                 videos,
                 returnVisits,
                 comments,
-                user: { connect: { id: parseInt(session.user.id) }}
+                user: { connect: { id: parseInt(session.user.id) } }
             }
         })
 
@@ -79,3 +83,42 @@ export async function POST(req: Request) {
         return NextResponse.json(({ message: "Server error", error: e }), { status: 500 })
     }
 }
+
+// export async function DELETE(req: Request) {
+//     try {
+//         const session = await getServerSession(authOptions);
+//         if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+//         // const {
+//         //     entryId
+//         // }: {
+//         //     entryId: string
+//         // } = await req.json();
+
+//         // console.log(entryId)
+
+//         // //check if user made this entry
+//         // const validationId = await prisma.serviceEntry.findUnique({
+//         //     where: {
+//         //         id: parseInt(entryId)
+//         //     }
+//         // })
+//         // if(parseInt(session.user.id) !== validationId?.userId) {
+//         //     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+//         // }
+
+//         // //delete entry
+//         // const data = prisma.serviceEntry.delete({
+//         //     where: {
+//         //         id: parseInt(entryId),
+//         //     }
+//         // })
+
+//         // return NextResponse.json(data, {
+//         //     status: 200
+//         // })
+//     } catch(e) {
+//         console.log(e)
+//         return NextResponse.json({ message: "Server error", error: e }, { status: 500 })
+//     }
+// }
