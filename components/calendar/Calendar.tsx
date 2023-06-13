@@ -34,7 +34,7 @@ const Calendar = ({ month, year, selectedDays, className = "" }: { month: number
     };
 
     return (
-        <div className={cn("p-5 w-full bg-neutral-100 md:dark:bg-gray-800 dark:bg-gray-900 md:mb-0 mb-10 rounded text-sm", className)}>
+        <div className={cn("xl:p-10 lg:p-5 p-5 w-full bg-white md:dark:bg-gray-900 dark:bg-gray-900 md:mb-0 mb-10 rounded text-sm", className)}>
             <span className="grid grid-cols-7 font-bold">
                 <Day variant="header">S</Day>
                 <Day variant="header">M</Day>

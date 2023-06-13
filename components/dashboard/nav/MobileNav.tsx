@@ -38,7 +38,7 @@ const MobileMenu = ({
 }) => (
     <div onClick={() => setMenuOpen(false)} className={`flex flex-col justify-evenly items-center ${menuOpen ? 'opacity-100 h-full' : 'translate-y-10 opacity-0 h-0 fixed top-0 invisible'} transition`}>
         <Logo href="/dashboard" adaptForDarkMode={true} />
-        <div className="shadow bg-cgray dark:bg-gray-700 py-5 px-20 rounded">
+        <div className="shadow bg-cgray dark:bg-gray-900 py-5 px-20 rounded">
             <YearTotal />
         </div>
         <div className="h-1/3">
@@ -57,13 +57,13 @@ const MobileNav = () => {
         <nav
             className={`lg:hidden w-screen ${
                 menuOpen ? "fixed bottom-0 h-screen" : "sticky bottom-0"
-            } bg-cgray-light dark:bg-gray-600  shadow-2xl shadow-black dark:shadow-none`}
+            } bg-cgray-light dark:bg-gray-700  shadow-2xl shadow-black dark:shadow-none`}
         >
             <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             <div
                 className={`w-full flex flex-row ${
                     menuOpen ? "hidden" : ""
-                } bg-cgray-light dark:bg-gray-600 justify-evenly items-center`}
+                } bg-cgray-light dark:bg-gray-900 justify-evenly items-center`}
             >
                 <MenuToggle menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
                 <NewButton />

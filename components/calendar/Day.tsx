@@ -6,7 +6,7 @@ const dayVariants = cva(
     {
         variants: {
             variant: {
-                default: "bg-neutral-300 text-neutral-400 dark:bg-gray-700 dark:text-gray-500",
+                default: "bg-neutral-200 text-neutral-400 dark:bg-gray-700 dark:text-gray-500",
                 header: "bg-inherit",
                 green: "bg-cgreen text-white",
             }                
@@ -25,7 +25,7 @@ interface DayProps extends VariantProps<typeof dayVariants> {
 
 const Day: React.FunctionComponent<DayProps> = ({ isToday = false, variant, className, children,...props}) => {
     return <span {...props} className={cn(dayVariants({variant, className}))}>
-        <span className={`${variant === 'green' && isToday ? 'bg-white text-cgreen' : isToday ? 'bg-neutral-500 dark:bg-gray-800 text-white'  : '' } md:px-2.5 md:py-0.5 px-2 aspect-square rounded-full`}>
+        <span className={`${variant === 'green' && isToday ? 'bg-white text-cgreen' : isToday ? 'bg-neutral-400 dark:bg-gray-800 text-white'  : '' } xl:px-2 xl:py-1.5 px-1 py-0.5 aspect-square rounded-full`}>
             {children}
         </span>
     </span>;

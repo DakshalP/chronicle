@@ -48,7 +48,7 @@ export default function NewEntry() {
         }
     }
     return (
-        <div className={` flex justify-center items-center min-h-screen  bg-gradient-to-tr from-gray-300 to-cgray-dark dark:from-gray-500 dark:via-gray-600 dark:to-gray-700`}>
+        <div className={` flex justify-center items-center min-h-screen  bg-gradient-to-tr from-gray-300 to-cgray-dark dark:from-gray-700 dark:to-gray-700`}>
             <div className={`fixed transition-all h-screen w-screen flex flex-col gap-5 items-center justify-center p-2 duration-200 ${successful ? '' : ' translate-y-10 opacity-0 h-0'}`}>
                 <h1 className="font-bold md:text-7xl text-5xl font-display text-center">Time recorded!</h1>
                 {successful && <p>+{`${watch('hours') || 0} hours recorded for ${dateFromYYYYMMDD(watch('dateStr').toString()).toLocaleDateString()}.`}</p>}
