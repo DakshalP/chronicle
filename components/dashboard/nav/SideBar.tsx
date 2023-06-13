@@ -1,7 +1,7 @@
 
-import Logo from "../Logo";
+import Logo from "../../Logo";
 import NavLinks from "./NavLinks";
-import NewButton from "./NewButton";
+import NewButton from "../NewButton";
 
 const SideBar = () => (
     <div className="text-gray-700 dark:text-gray-100">
