@@ -66,7 +66,9 @@ export default function NewEntry() {
                     defaultValue={new Date(new Date().setHours(0,0,0,0)).toISOString().substring(0, 10)}
                     {...register("dateStr", {
                         valueAsDate: false
-                    })} type="date" />
+                    })} type="date" 
+                    className="w-full"
+                    />
                 </div>
                 <div>
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Title</label>
@@ -81,7 +83,7 @@ export default function NewEntry() {
                     </div>
                     {errors.hours && <p>{errors.hours.message}</p>}
                 </div>
-                <div className="grid lg:grid-cols-3 grid-cols-2 gap-6">
+                <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 flex flex-col gap-6">
                     <div className="w-full">
                         <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Publications</label>
                         <div className="flex justify-center gap-2">

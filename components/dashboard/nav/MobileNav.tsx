@@ -17,12 +17,12 @@ const MenuToggle = ({
     <div className="flex items-center text-gray-800 dark:text-gray-100">
         <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="cursor-pointer font-bold tracking-wide text-3xl flex flex-row items-center gap-5 w-full"
+            className="cursor-pointer font-bold tracking-wide sm:text-3xl text-2xl flex flex-row items-center gap-3 w-full"
         >
             {menuOpen ? (
-                <IoMdClose className="w-8 h-8" />
+                <IoMdClose className="sm:w-8 sm:h-8 w-6 h-6" />
             ) : (
-                <RiMenu2Line className="w-8 h-8" />
+                <RiMenu2Line className="sm:w-8 sm:h-8 w-6 h-6" />
             )}
             Menu
         </button>

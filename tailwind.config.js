@@ -9,7 +9,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                display: ["var(--font-dm-serif-display)", "serif"]
+                display: ["var(--font-dm-serif-display)", "DM Serif Display","Georgia", "Times New Roman", "serif"]
             },
             colors: {
                 cgray: {

@@ -61,8 +61,8 @@ const Header = ({
                     )}
                 </div>
                 <div className="flex items-start md:justify-end justify-center md:-mb-3 gap-5">
-                    <Button onClick={decrease}>
-                        <BiCaretLeft className="w-6 h-6" />
+                    <Button size="small" onClick={decrease}>
+                        <BiCaretLeft className="w-7 h-7" />
                     </Button>
                     <Button
                         onClick={() => {
@@ -77,12 +77,13 @@ const Header = ({
                         disabled={
                             currentMonth === month && currentYear === year
                         }
-                        className="md:text-inherit text-sm md:px-8 px-3 "
+                        size="small"
+                        className="font-medium whitespace-nowrap"
                     >
                         This Month
                     </Button>
-                    <Button onClick={increase}>
-                        <BiCaretRight className="w-6 h-6" />
+                    <Button size="small" onClick={increase}>
+                        <BiCaretRight className="w-7 h-7" />
                     </Button>
                 </div>
             </div>

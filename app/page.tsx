@@ -35,9 +35,9 @@ const Hero = () => (
                 <p className="mb-8 mt-2 text-xl leading-relaxed">
                    With Chronicle you can keep track of your service hours across all your devices. With automated totals and other features to make reporting easier.
                 </p>
-                <div className="flex justify-center gap-3">
-                    <Button variant={"cgreen"} href="/auth/signup">Get Started</Button>
-                    <Button variant="nodark" href="/auth/signin">Sign in</Button>            
+                <div className="flex lg:flex-row md:flex-col sm:flex-row flex-col lg:justify-start justify-center w-full gap-5">
+                    <Button variant={"cgreen"} href="/auth/signup" className="md:w-fit w-full">Get Started</Button>
+                    <Button variant="nodark" href="/auth/signin" className="md:w-fit w-full">Sign in</Button>            
                 </div>
             </div>
             <div className="lg:w-2/3 md:w-1/2 w-5/6">
@@ -112,7 +112,7 @@ const Feature = () => (
         </div>
       </div>
     </div>
-    <div className="w-full flex justify-center mt-14">
+    <div className="w-full flex justify-center mt-24">
       <Button variant="cbrown" href="/auth/signup">Start using these features</Button>
     </div>
   </div>
@@ -121,7 +121,7 @@ const Feature = () => (
 
 const ComingSoon = () => (
   <section className="text-gray-600 body-font min-h-screen flex flex-col justify-evenly bg-gradient-to-b from-gray-200 to-gray-300">
-  <div className="container px-5 py-10 mx-auto">
+  <div className="container px-5 py-32 mx-auto">
     <div className="text-center mb-20">
       <h1 className="md:text-7xl text-5xl font-display font-extrabold  title-font text-gray-900 mb-4">Coming Soon</h1>
       <div className="flex mt-6 justify-center">
@@ -158,8 +158,8 @@ const ComingSoon = () => (
         </div>
       </div>
     </div>
-    <div className="w-full flex justify-center mt-14">
-      <Button variant="cgreen" href="/auth/signup">Sign up for a free Chronicle account</Button>
+    <div className="w-full flex justify-center mt-24">
+      <Button variant="cgreen" href="/auth/signup">Sign up for a free account</Button>
     </div>
   </div>
 </section>
