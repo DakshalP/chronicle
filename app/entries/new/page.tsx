@@ -108,7 +108,7 @@ export default function NewEntry() {
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Notes</label>
                     <TextArea maxLength={500} {...register("comments")} placeholder="Optional notes" />
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-5">
                 <Button className="w-full" variant={"cbrown"} type="submit" disabled={successful || isSubmitting}>{!isSubmitting ? 'Submit' : 'Submitting...'}</Button>
                 <Button className="w-full" href="/dashboard">Cancel</Button>
                 </div>

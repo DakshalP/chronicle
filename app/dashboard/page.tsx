@@ -41,7 +41,7 @@ type Statistics = {
     returnVisits: number,
 }
 
-type Entries = {
+export type Entries = {
    id: number,
    date: string,
    hours: number,
@@ -59,6 +59,8 @@ export default function Dashboard() {
     const currentYear = new Date().getFullYear();
 
     const [loading, setLoading] = useState(true)
+    const [deletedID, setDeletedID] = useState(0)
+
     const [month, setMonth] = useState(currentMonth)
     const [year, setYear] = useState(currentYear)
 
@@ -75,26 +77,14 @@ export default function Dashboard() {
             setLoading(false)
         }
         fetchData()
-    }, [month, year])
-
-    // const entries = await prisma.serviceEntry.findMany({
-    //     select: {
-    //         date: true,
-    //     },
-    //     where: {
-    //         date: getDayRangeOfMonth(currentMonth, currentYear),
-    //         userId: parseInt(session.user.id),
-    //     },
-    // });
-
-    // const selectedDays = entries.map((entry) => entry.date.getDate());
+    }, [month, year, deletedID])
 
     return (
-        <div className="grid mb-4 pb-10 px-8 mx-6 min-h-screen">
+        <div className="grid mb-4 pb-10 px-8 md:mx-6 mx-2 min-h-screen">
             <div className="grid grid-cols-12 gap-6">
                 <div className="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
                     <div className="col-span-12 mt-8">
-                        <Header {...{ currentMonth, currentYear, month, year, setMonth, setYear }} />
+                        <Header noEntries={!loading && !!entries && entries.length === 0} {...{ currentMonth, currentYear, month, year, setMonth, setYear }} />
                         <Statistics loading={loading} {...stats} />
                     </div>
                     <div className="col-span-12 mt-5">
@@ -112,8 +102,8 @@ export default function Dashboard() {
                             >
                                 <div className="flex items-center justify-center h-full overflow-hidden">
                                     <div className="-rotate-12 flex flex-col">
-                                        <span className="transform xl:text-6xl text-5xl font-bold uppercase opacity-25">Under Construction</span>
-                                        <span className="transform font-bold uppercase opacity-25 text-center">Content coming soon</span>
+                                        <span className="transform xl:text-6xl text-5xl font-bold uppercase opacity-25 select-none">Under Construction</span>
+                                        <span className="transform font-bold uppercase opacity-25 text-center select-none">Content coming soon</span>
                                     </div>
 
                                 </div>
@@ -128,7 +118,7 @@ export default function Dashboard() {
                                     <div className="flex flex-col">
                                         <div className="-my-2 overflow-x-auto">
                                             <div className="py-2 align-middle inline-block min-w-full">
-                                                <Table />
+                                                <Table setDeletedID={setDeletedID} loading={loading} entries={entries ? entries : []} />
                                             </div>
                                         </div>
                                     </div>

@@ -7,7 +7,6 @@ type Props = { loading: boolean, month: number; year: number, selectedDays: numb
 
 const Calendar = ({ loading, month, year, selectedDays, className = "" }: Props) => {
 
-    if(loading) selectedDays = []
     const monthIndex = month - 1;
     const currentDate = new Date();
 

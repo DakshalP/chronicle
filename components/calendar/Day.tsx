@@ -2,7 +2,7 @@ import { VariantProps, cva } from 'class-variance-authority'
 import { cn } from '@/lib/utils';
 
 const dayVariants = cva(
-    "rounded aspect-square flex justify-center items-center font-bold",
+    "rounded aspect-square flex justify-center items-center font-bold xl:text-base lg:text-sm text-xs",
     {
         variants: {
             variant: {

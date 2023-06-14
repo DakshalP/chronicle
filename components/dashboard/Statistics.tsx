@@ -51,7 +51,7 @@ const Statistics = ({ loading, ...stats }: Props) => {
     return (
         <div className="grid grid-cols-12 gap-6 mt-5">
             {Object.keys(statIcons).map((key, index) => (
-                <div className="p-8 shadow-lg rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white dark:bg-gray-900 relative">
+                <div key={key} className="p-8 shadow-lg rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white dark:bg-gray-900 relative">
                     {/* <div className="absolute w-fit my-5 mx-4 right-0 top-0">
                 <div className="bg-cgreen rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                     <span className="flex items-center">
@@ -60,12 +60,12 @@ const Statistics = ({ loading, ...stats }: Props) => {
                 </div>
             </div> */}
                     <div className={`flex items-center ${loading ? 'animate-pulse' : ''}`}>
-                        <div className={`${loading ? 'bg-gray-50 text-transparent' : index % 2 === 0 ? 'text-cgreen bg-green-50' : 'text-cbrown bg-orange-50'} inline-flex flex-shrink-0 items-center justify-center h-16 w-16 rounded-full mr-6`}>
+                        <div className={`${loading ? 'bg-neutral-200 dark:bg-gray-50 text-transparent' : index % 2 === 0 ? 'text-cgreen bg-green-50' : 'text-cbrown bg-orange-50'} inline-flex flex-shrink-0 items-center justify-center h-16 w-16 rounded-full mr-6`}>
                             {statIcons[key]}
                         </div>
                         <div>
                             <span className="block text-3xl font-bold">
-                                {loading ? "..." : (Number(stats[key]) || "-")}
+                                {loading ? "..." : Number(stats[key]) || 0}
                             </span>
                             <span className="block text-gray-500 dark:text-gray-300">
                                 {loading ? "" : statLabels[key]}

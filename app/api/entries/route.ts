@@ -31,7 +31,12 @@ export async function GET(req: NextRequest, res: NextResponse) {
             where: {
                 date: getDayRangeOfMonth(month, year),
                 userId: parseInt(session.user.id)
-            }
+            },
+            orderBy: [
+                {
+                    date: 'asc'
+                }
+            ]
         })
         return NextResponse.json(data, {
             status: 200
@@ -84,41 +89,35 @@ export async function POST(req: Request) {
     }
 }
 
-// export async function DELETE(req: Request) {
-//     try {
-//         const session = await getServerSession(authOptions);
-//         if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+export async function DELETE(req: NextRequest) {
+    try {
+        const session = await getServerSession(authOptions);
+        if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-//         // const {
-//         //     entryId
-//         // }: {
-//         //     entryId: string
-//         // } = await req.json();
+        const entryId = Number(req.nextUrl.searchParams.get("id"))
 
-//         // console.log(entryId)
+        //check if user made this entry
+        const validation = await prisma.serviceEntry.findUnique({
+            where: {
+                id: entryId
+            }
+        })
+        if(!validation || parseInt(session.user.id) !== validation.userId) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+        }
 
-//         // //check if user made this entry
-//         // const validationId = await prisma.serviceEntry.findUnique({
-//         //     where: {
-//         //         id: parseInt(entryId)
-//         //     }
-//         // })
-//         // if(parseInt(session.user.id) !== validationId?.userId) {
-//         //     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-//         // }
+        //delete entry
+        const data = await prisma.serviceEntry.delete({
+            where: {
+                id: entryId,
+            }
+        })
 
-//         // //delete entry
-//         // const data = prisma.serviceEntry.delete({
-//         //     where: {
-//         //         id: parseInt(entryId),
-//         //     }
-//         // })
-
-//         // return NextResponse.json(data, {
-//         //     status: 200
-//         // })
-//     } catch(e) {
-//         console.log(e)
-//         return NextResponse.json({ message: "Server error", error: e }, { status: 500 })
-//     }
-// }
+        return NextResponse.json(data, {
+            status: 200
+        })
+    } catch(e) {
+        console.log(e)
+        return NextResponse.json({ message: "Server error", error: e }, { status: 500 })
+    }
+}

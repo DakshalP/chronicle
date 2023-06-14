@@ -22,6 +22,13 @@ export const getDayRangeOfMonth = (month: number, year: number): { lte: Date, gt
     }
 }
 
+export const getDayRangeOfYear = (year: number): { lte: Date, gte: Date } => {
+    return {
+        gte: new Date(year, 0, 1),
+        lte: new Date(year, 11, getDaysInMonth(11, year))
+    }
+}
+
 //due to Date() constructor returning incorrect dates when initialized with string yyyy-mm-dd
 export const dateFromYYYYMMDD = (yyyy_mm_dd: string): Date  => 
     new Date(

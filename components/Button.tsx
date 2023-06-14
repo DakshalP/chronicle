@@ -11,16 +11,16 @@ export const buttonVariants = cva(
         variants: {
             variant: {
                 cbrown: 
-                    "font-bold text-white ring-cbrown-light bg-cbrown hover:bg-cbrown-dark dark:ring-cbrown-light",
+                    "font-bold text-lg text-white ring-cbrown-light bg-cbrown hover:bg-cbrown-dark dark:ring-cbrown-light",
                 cgreen:
-                    "font-bold text-white ring-cgreen-light bg-cgreen hover:bg-cgreen-dark dark:ring-cgreen-light",
+                    "font-bold text-lg text-white ring-cgreen-light bg-cgreen hover:bg-cgreen-dark dark:ring-cgreen-light",
                 cgray:
-                    "font-medium text-gray-700 ring-cgray-outline bg-cgray-dark hover:bg-cgray-hover dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500 dark:ring-gray-400",
+                    "font-medium text-lg text-gray-700 ring-cgray-outline bg-cgray-dark hover:bg-cgray-hover dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500 dark:ring-gray-400",
                 nodark:
-                    "font-medium text-gray-700 ring-cgray-outline bg-cgray-dark hover:bg-cgray-hover"
+                    "font-medium text-lg text-gray-700 ring-cgray-outline bg-cgray-dark hover:bg-cgray-hover"
             },
             size: {
-                default: "py-3 px-6",
+                default: "py-3 px-8",
                 small: "py-2 px-4"
             },
         },
