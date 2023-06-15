@@ -53,9 +53,9 @@ const Header = ({
                     </h1>
                     {noEntries && (
                         <h2 className="text-gray-600 ml-0.5 font-bold bg-white dark:bg-gray-300 my-5 p-3 rounded md:text-start text-center w-full">
-                            No entries this month. Create one using
-                            <span className="lg:hidden inline"> the +Entry button below.</span>
-                            <span className="lg:inline hidden"> New Entry button to the right.</span>
+                            No entries this month. Create one using the
+                            <span className="lg:hidden inline"><span className="text-white p-1 mx-2 rounded bg-cgreen">+Entry</span> button below.</span>
+                            <span className="lg:inline hidden"><span className="text-white p-1 mx-2 rounded bg-cgreen">+New entry</span> button to the right.</span>
                         </h2>
                     )}
                 </div>

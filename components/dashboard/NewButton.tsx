@@ -10,7 +10,7 @@ const NewButton = () => (
             <span>New</span>
             <span>entry</span>
         </span>
-        <span className="lg:hidden inline-block tracking-wider sm:text-2xl text-xl font-extrabold font-display">Entry</span>
+        <span className="lg:hidden inline-block tracking-wider sm:text-2xl text-xl font-extrabold md:font-display">Entry</span>
     </Link>
 );
 
