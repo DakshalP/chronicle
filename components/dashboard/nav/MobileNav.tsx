@@ -17,7 +17,7 @@ const MenuToggle = ({
     <div className="flex items-center text-gray-800 dark:text-gray-100">
         <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="cursor-pointer font-bold tracking-wide sm:text-3xl text-2xl flex flex-row items-center gap-3 w-full"
+            className="cursor-pointer font-bold tracking-wide sm:text-3xl text-2xl flex flex-row items-center justify-center gap-3 w-full"
         >
             {menuOpen ? (
                 <IoMdClose className="sm:w-8 sm:h-8 w-6 h-6" />
@@ -61,9 +61,9 @@ const MobileNav = () => {
         >
             <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             <div
-                className={`w-full flex flex-row ${
+                className={`w-full  ${
                     menuOpen ? "hidden" : ""
-                } bg-cgray-light dark:bg-gray-600 justify-evenly items-center`}
+                } bg-cgray-light dark:bg-gray-600 md:flex flex-row justify-evenly items-center grid grid-cols-2`}
             >
                 <MenuToggle menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
                 <NewButton />
