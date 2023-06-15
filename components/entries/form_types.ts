@@ -17,4 +17,4 @@ export type CustomSubmitHandler = (
     inputs: Inputs,
     customFormState: CustomFormState,
     useFormReturn: UseFormReturn<Inputs>,
-) => Promise<undefined>
+) => Promise<void>
