@@ -2,7 +2,7 @@ import { Entries } from "@/app/dashboard/page";
 import { dateFromYYYYMMDD } from "@/lib/utils";
 import { BiLinkExternal, BiTrash } from "react-icons/bi";
 import Button from "../Button";
-import { useState } from "react"
+import { useState } from "react";
 
 import {
     Dialog,
@@ -34,12 +34,14 @@ const Table = ({
     entries: Entries;
     setDeletedID: Function;
 }) => {
-    const [openDelete, setOpenDelete] = useState(false)
     const renderBody = () => {
         return entries.map((entry) => {
             const entryDate = dateFromYYYYMMDD(entry.date);
             return (
-                <tbody key={entry.id} className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody
+                    key={entry.id}
+                    className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700"
+                >
                     <tr>
                         <td className="px-6 py-4 whitespace-no-wrap leading-5">
                             <p>
@@ -61,7 +63,7 @@ const Table = ({
                                 {entry.hours}
                             </p>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap leading-5 xl:table-cell hidden">
+                        <td className="px-6 py-4 whitespace-no-wrap leading-5 md:table-cell hidden">
                             <p
                                 className={
                                     entry.publications > 0
@@ -72,7 +74,7 @@ const Table = ({
                                 {entry.publications}
                             </p>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap leading-5 xl:table-cell hidden">
+                        <td className="px-6 py-4 whitespace-no-wrap leading-5 md:table-cell hidden">
                             <p
                                 className={
                                     entry.videos > 0
@@ -83,7 +85,7 @@ const Table = ({
                                 {entry.videos}
                             </p>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap leading-5 xl:table-cell hidden">
+                        <td className="px-6 py-4 whitespace-no-wrap leading-5 md:table-cell hidden">
                             <p
                                 className={
                                     entry.returnVisits > 0
@@ -105,7 +107,8 @@ const Table = ({
                                 <DialogContent>
                                     <DialogHeader>
                                         <DialogTitle>
-                                            Entry on {entryDate.toLocaleDateString()}
+                                            Entry on{" "}
+                                            {entryDate.toLocaleDateString()}
                                         </DialogTitle>
                                         <DialogDescription>
                                             <div className="p-3">
@@ -163,7 +166,18 @@ const Table = ({
                                                     </div>
                                                 )}
                                                 <div className="my-5 flex gap-5 justify-end">
-                                                    <Button size="small" onClick={() => deleteEntry(entry.id, setDeletedID)} variant="red"><BiTrash /> Delete</Button>
+                                                    <Button
+                                                        size="small"
+                                                        onClick={() =>
+                                                            deleteEntry(
+                                                                entry.id,
+                                                                setDeletedID
+                                                            )
+                                                        }
+                                                        variant="red"
+                                                    >
+                                                        <BiTrash /> Delete
+                                                    </Button>
                                                 </div>
                                             </div>
                                         </DialogDescription>
@@ -171,36 +185,15 @@ const Table = ({
                                 </DialogContent>
                             </Dialog>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5">
+                        <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 xl:table-cell hidden">
                             <div className="flex space-x-4">
-                                {/* <a
-                            href="#"
-                            className="text-blue-500 hover:text-blue-600"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-5 h-5 mr-1"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                />
-                            </svg>
-                            <p>Edit</p>
-                        </a> */}
-                        <Dialog open={openDelete} onOpenChange={setOpenDelete}>
-                                <DialogTrigger className="dark:hover:text-gray-300 hover:text-gray-800">
-                                <div
-                                    className="text-red-500 hover:text-red-600 flex"
+                                <a
+                                    href="#"
+                                    className="text-blue-500 hover:text-blue-600 flex"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="w-5 h-5 mr-1 ml-3"
+                                        className="w-5 h-5 mr-1"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -209,38 +202,68 @@ const Table = ({
                                             strokeLinecap="round"
                                             strokeLinejoin="round"
                                             strokeWidth="2"
-                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                                         />
                                     </svg>
-                                    <p>Delete</p>
-                                </div>
-                                </DialogTrigger>
-                                <DialogContent>
-                                    <DialogHeader>
-                                        <DialogTitle>
-                                            Are you sure you want to delete this entry?
-                                        </DialogTitle>
-                                        <DialogDescription>
-                                            <p>
-                                                Date: {entryDate.toLocaleDateString()}
-                                            </p>
-                                            <p>
-                                                Title: {entry.title || "No title"}
-                                            </p>
-                                            <div className="p-3">
-                                                <div className="my-5 flex gap-5 justify-center">
-                                                    <Button size="small" onClick={() => {
-                                                        setOpenDelete(false)
-                                                        deleteEntry(entry.id, setDeletedID)
-                                                    }} variant="red"><BiTrash />Confirm Delete</Button>
-                                                    <Button size="small" onClick={() => setOpenDelete(false)}>Cancel</Button>
+                                    <p>Edit</p>
+                                </a>
+                                <Dialog
+                                >
+                                    <DialogTrigger className="dark:hover:text-gray-300 hover:text-gray-800">
+                                        <div className="text-red-500 hover:text-red-600 flex">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="w-5 h-5 mr-1 ml-3"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                />
+                                            </svg>
+                                            <p>Delete</p>
+                                        </div>
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>
+                                                Are you sure you want to delete
+                                                this entry?
+                                            </DialogTitle>
+                                            <DialogDescription>
+                                                <p>
+                                                    Date:{" "}
+                                                    {entryDate.toLocaleDateString()}
+                                                </p>
+                                                <p>
+                                                    Title:{" "}
+                                                    {entry.title || "No title"}
+                                                </p>
+                                                <div className="p-3">
+                                                    <div className="my-5 flex gap-5 justify-center">
+                                                        <Button
+                                                            size="small"
+                                                            onClick={() => {
+                                                                deleteEntry(
+                                                                    entry.id,
+                                                                    setDeletedID
+                                                                );
+                                                            }}
+                                                            variant="red"
+                                                        >
+                                                            <BiTrash />
+                                                            Confirm Delete
+                                                        </Button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                </DialogContent>
-                            </Dialog>
-                                
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                    </DialogContent>
+                                </Dialog>
                             </div>
                         </td>
                     </tr>
@@ -264,17 +287,17 @@ const Table = ({
                                 <span className="mr-2">HOURS</span>
                             </div>
                         </th>
-                        <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider xl:table-cell hidden">
+                        <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider md:table-cell hidden">
                             <div className="flex">
                                 <span className="mr-2">PUBL.</span>
                             </div>
                         </th>
-                        <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider xl:table-cell hidden">
+                        <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider md:table-cell hidden">
                             <div className="flex">
                                 <span className="mr-2">VIDEOS</span>
                             </div>
                         </th>
-                        <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider xl:table-cell hidden">
+                        <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider md:table-cell hidden">
                             <div className="flex">
                                 <span className="mr-2">RETURNS</span>
                             </div>
@@ -284,9 +307,9 @@ const Table = ({
                                 <span className="mr-2">DETAILS</span>
                             </div>
                         </th>
-                        <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider xl:table-cell hidden">
                             <div className="flex">
-                                <span className="mr-2">DELETE</span>
+                                <span className="mr-2">ACTIONS</span>
                             </div>
                         </th>
                     </tr>
@@ -302,13 +325,13 @@ const Table = ({
                             <td className="px-6 py-4 whitespace-no-wrap leading-5">
                                 <p>...</p>
                             </td>
-                            <td className="px-6 py-4 whitespace-no-wrap leading-5 xl:table-cell hidden">
+                            <td className="px-6 py-4 whitespace-no-wrap leading-5 md:table-cell hidden">
                                 <p>...</p>
                             </td>
-                            <td className="px-6 py-4 whitespace-no-wrap leading-5 xl:table-cell hidden">
+                            <td className="px-6 py-4 whitespace-no-wrap leading-5 md:table-cell hidden">
                                 <p>...</p>
                             </td>
-                            <td className="px-6 py-4 whitespace-no-wrap leading-5 xl:table-cell hidden">
+                            <td className="px-6 py-4 whitespace-no-wrap leading-5 md:table-cell hidden">
                                 <p>...</p>
                             </td>
                             <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5">
