@@ -26,7 +26,7 @@ const sumConvert = (x: any, y: any) => {
 
 export default function NewEntry() {
     const [successful, setSuccessful] = useState(false);
-    const { register, handleSubmit, setValue, watch, formState: { errors, isSubmitting } } = useForm<Inputs>();
+    const { register, handleSubmit, setValue, setError, watch, formState: { errors, isSubmitting } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
         //fill in default 0 and cast to number if needed
         for (let key of Object.keys(inputs)) {
@@ -42,6 +42,9 @@ export default function NewEntry() {
         const res = await data.json()
         if(!data.ok) {
             console.log(res)
+            setError('root', {
+                message: res.message
+            })
         }
         else {
             setSuccessful(true)
@@ -60,6 +63,7 @@ export default function NewEntry() {
                 </div>
             <form className="lg:space-y-10 space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="text-6xl font-extrabold font-display">New entry</h1>
+                {errors.root &&  <p tabIndex={1} autoFocus className="p-2 my-2 bg-red-700 rounded outline-none focus:ring-4 ring-red-300 font-bold text-white">{errors.root.message}</p>}
                 <div>
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Date</label>
                     <Input
@@ -72,7 +76,7 @@ export default function NewEntry() {
                 </div>
                 <div>
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Title</label>
-                    <Input autoFocus maxLength={50} {...register("title")} placeholder="Optional title" />
+                    <Input autoFocus={!errors.root} maxLength={50} {...register("title")} placeholder="Optional title" />
                 </div>
                 <div>
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Hours</label>
