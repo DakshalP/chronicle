@@ -68,6 +68,7 @@ export default function NewEntry() {
                     <label htmlFor="large-input" className="block mb-2 font-bold text-gray-900 dark:text-white">Date</label>
                     <Input
                     defaultValue={new Date(new Date().setHours(0,0,0,0)).toISOString().substring(0, 10)}
+                    max={new Date(new Date().setHours(0,0,0,0)).toISOString().substring(0, 10)}
                     {...register("dateStr", {
                         valueAsDate: false
                     })} type="date" 

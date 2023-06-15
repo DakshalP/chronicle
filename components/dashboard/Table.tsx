@@ -1,6 +1,8 @@
 import { Entries } from "@/app/dashboard/page";
 import { dateFromYYYYMMDD } from "@/lib/utils";
-import { BiLinkExternal } from "react-icons/bi";
+import { BiLinkExternal, BiTrash } from "react-icons/bi";
+import Button from "../Button";
+import { useState } from "react"
 
 import {
     Dialog,
@@ -32,6 +34,7 @@ const Table = ({
     entries: Entries;
     setDeletedID: Function;
 }) => {
+    const [openDelete, setOpenDelete] = useState(false)
     const renderBody = () => {
         return entries.map((entry) => {
             const entryDate = dateFromYYYYMMDD(entry.date);
@@ -159,6 +162,9 @@ const Table = ({
                                                         </div>
                                                     </div>
                                                 )}
+                                                <div className="my-5 flex gap-5 justify-end">
+                                                    <Button size="small" onClick={() => deleteEntry(entry.id, setDeletedID)} variant="red"><BiTrash /> Delete</Button>
+                                                </div>
                                             </div>
                                         </DialogDescription>
                                     </DialogHeader>
@@ -187,10 +193,9 @@ const Table = ({
                             </svg>
                             <p>Edit</p>
                         </a> */}
-                                <button
-                                    onClick={() =>
-                                        deleteEntry(entry.id, setDeletedID)
-                                    }
+                        <Dialog open={openDelete} onOpenChange={setOpenDelete}>
+                                <DialogTrigger className="dark:hover:text-gray-300 hover:text-gray-800">
+                                <div
                                     className="text-red-500 hover:text-red-600 flex"
                                 >
                                     <svg
@@ -208,7 +213,31 @@ const Table = ({
                                         />
                                     </svg>
                                     <p>Delete</p>
-                                </button>
+                                </div>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>
+                                            Are you sure you want to delete this entry?
+                                        </DialogTitle>
+                                        <DialogDescription>
+                                            <p>
+                                                Date: {entryDate.toLocaleDateString()}
+                                            </p>
+                                            <p>
+                                                Title: {entry.title || "No title"}
+                                            </p>
+                                            <div className="p-3">
+                                                <div className="my-5 flex gap-5 justify-center">
+                                                    <Button size="small" onClick={() => deleteEntry(entry.id, setDeletedID)} variant="red"><BiTrash />Confirm Delete</Button>
+                                                    <Button size="small" onClick={() => setOpenDelete(false)}>Cancel</Button>
+                                                </div>
+                                            </div>
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                </DialogContent>
+                            </Dialog>
+                                
                             </div>
                         </td>
                     </tr>
