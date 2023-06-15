@@ -1,6 +1,6 @@
 import { Entries } from "@/app/dashboard/page";
 import { dateFromYYYYMMDD } from "@/lib/utils";
-import { BiLinkExternal, BiTrash } from "react-icons/bi";
+import { BiEdit, BiLinkExternal, BiTrash } from "react-icons/bi";
 import Button from "../Button";
 import { useState } from "react";
 
@@ -167,6 +167,13 @@ const Table = ({
                                                     </div>
                                                 )}
                                                 <div className="my-5 flex gap-5 justify-end">
+                                                    <Button
+                                                        size="small"
+                                                        href={`/entries/${entry.id}/edit`}
+                                                        variant="blue"
+                                                    >
+                                                        <BiEdit /> Edit
+                                                    </Button>
                                                     <Button
                                                         size="small"
                                                         onClick={() =>

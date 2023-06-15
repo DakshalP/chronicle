@@ -19,7 +19,9 @@ export const buttonVariants = cva(
                 nodark:
                     "font-medium text-lg text-gray-700 ring-cgray-outline bg-cgray-dark hover:bg-cgray-hover",
                 red:
-                    "font-medium text-lg text-white ring-red-300 bg-red-600 hover:bg-red-700"
+                    "font-medium text-lg text-white ring-red-300 bg-red-600 hover:bg-red-700",
+                blue:
+                "font-medium text-lg text-white ring-blue-300 bg-blue-600 hover:bg-blue-700"
             },
             size: {
                 default: "py-3 px-8",

@@ -27,7 +27,7 @@ export default function EditEntry({ params }: { params: { id: string }}) {
         }
 
         getEntry()
-    }, [])
+    }, [params.id])
 
     if(!entry) return <FormLoading />
     const defaultValues: Partial<Inputs> = entry || {}
