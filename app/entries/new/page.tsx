@@ -38,5 +38,5 @@ export default function NewEntry() {
             customFormState.setSuccessful(true)
         }
     }
-    return <FormWrapper formTitle="New Entry" defaultValues={defaultValues} wrappedOnSubmit={onSubmit} />
+    return <FormWrapper label="New" defaultValues={defaultValues} wrappedOnSubmit={onSubmit} />
 }

@@ -12,9 +12,10 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/Dialog";
+import Link from "next/link";
 
 async function deleteEntry(id: number, setDeletedID: Function) {
-    const data = await fetch(`/api/entries?id=${id}`, {
+    const data = await fetch(`/api/entries/${id}`, {
         method: "DELETE",
     });
     const res = await data.json();
@@ -187,8 +188,8 @@ const Table = ({
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 xl:table-cell hidden">
                             <div className="flex space-x-4">
-                                <a
-                                    href="#"
+                                <Link
+                                    href={`/entries/${entry.id}/edit`}
                                     className="text-blue-500 hover:text-blue-600 flex"
                                 >
                                     <svg
@@ -206,7 +207,7 @@ const Table = ({
                                         />
                                     </svg>
                                     <p>Edit</p>
-                                </a>
+                                </Link>
                                 <Dialog
                                 >
                                     <DialogTrigger className="dark:hover:text-gray-300 hover:text-gray-800">

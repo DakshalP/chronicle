@@ -3,17 +3,7 @@ import prisma from '@/prisma/client'
 import { getServerSession } from 'next-auth/next';
 import { NextRequest, NextResponse } from 'next/server';
 import { authOptions } from '../auth/[...nextauth]/route';
-
-type entryProps = {
-    userId: string,
-    title: string,
-    dateStr: string,
-    hours: number,
-    publications: number,
-    videos: number,
-    returnVisits: number,
-    comments: string,
-}
+import { Entry } from '@/components/entries/entry_types';
 
 export async function GET(req: NextRequest, res: NextResponse) {
     try {
@@ -62,7 +52,7 @@ export async function POST(req: Request) {
             videos,
             returnVisits,
             comments
-        }: entryProps = await req.json()
+        }: Entry = await req.json()
 
         const date = dateFromYYYYMMDD(dateStr)
 
@@ -89,35 +79,4 @@ export async function POST(req: Request) {
     }
 }
 
-export async function DELETE(req: NextRequest) {
-    try {
-        const session = await getServerSession(authOptions);
-        if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-        const entryId = Number(req.nextUrl.searchParams.get("id"))
-
-        //check if user made this entry
-        const validation = await prisma.serviceEntry.findUnique({
-            where: {
-                id: entryId
-            }
-        })
-        if(!validation || parseInt(session.user.id) !== validation.userId) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-        }
-
-        //delete entry
-        const data = await prisma.serviceEntry.delete({
-            where: {
-                id: entryId,
-            }
-        })
-
-        return NextResponse.json(data, {
-            status: 200
-        })
-    } catch(e) {
-        console.log(e)
-        return NextResponse.json({ message: "Server error", error: e }, { status: 500 })
-    }
-}

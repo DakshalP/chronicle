@@ -82,7 +82,7 @@ export default function Dashboard() {
     }, [month, year, deletedID]);
 
     return (
-        <div className="grid mb-4 pb-10 px-8 md:mx-6 mx-2 min-h-screen">
+        <div className="grid mb-4 pb-10 px-8 md:mx-6 min-h-screen">
             <div className="grid grid-cols-12 gap-6">
                 <div className="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
                     <div className="col-span-12 mt-8">

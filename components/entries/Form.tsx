@@ -20,7 +20,7 @@ const sumConvert = (x: any, y: any) => {
 };
 
 type Props = {
-    title: string;
+    label: "Edit" | "New";
     defaultValues: Partial<Inputs>;
     onSubmit: SubmitHandler<Inputs>;
     customFormState: CustomFormState;
@@ -28,7 +28,7 @@ type Props = {
 };
 
 const Form = ({
-    title,
+    label,
     defaultValues,
     onSubmit,
     customFormState: {
@@ -52,7 +52,7 @@ const Form = ({
             className="lg:space-y-10 space-y-6"
             onSubmit={handleSubmit(onSubmit)}
         >
-            <h1 className="text-6xl font-extrabold font-display">{title}</h1>
+            <h1 className="text-6xl font-extrabold font-display">{label} entry</h1>
             {errors.root && (
                 <p
                     tabIndex={1}
@@ -105,6 +105,7 @@ const Form = ({
                 </label>
                 <div className="flex gap-2">
                     <Input
+                        defaultValue={defaultValues.hours}
                         type="number"
                         step="0.5"
                         pattern="^\d*(\.\d{0,1})?$"
@@ -145,6 +146,7 @@ const Form = ({
                     </label>
                     <div className="flex justify-center gap-2">
                         <Input
+                            defaultValue={defaultValues.publications}
                             {...register("publications")}
                             type="number"
                             placeholder="0"
@@ -174,6 +176,7 @@ const Form = ({
                     </label>
                     <div className="flex justify-center gap-2">
                         <Input
+                            defaultValue={defaultValues.videos}
                             {...register("videos")}
                             type="number"
                             placeholder="0"
@@ -203,6 +206,7 @@ const Form = ({
                     </label>
                     <div className="flex justify-center gap-2">
                         <Input
+                            defaultValue={defaultValues.returnVisits}
                             {...register("returnVisits")}
                             type="number"
                             placeholder="0"
@@ -232,6 +236,7 @@ const Form = ({
                     Notes
                 </label>
                 <TextArea
+                    defaultValue={defaultValues.comments}
                     maxLength={500}
                     {...register("comments")}
                     placeholder="Optional notes"
@@ -244,7 +249,7 @@ const Form = ({
                     type="submit"
                     disabled={successful || isSubmitting}
                 >
-                    {!isSubmitting ? "Submit" : "Submitting..."}
+                    {!isSubmitting ? (label === "Edit" ? "Update" : "Submit") : "Submitting..."}
                 </Button>
                 <Button
                     disabled={successful || isSubmitting}

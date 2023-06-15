@@ -1,16 +1,8 @@
 import { Dispatch, SetStateAction } from "react"
 import { FieldValues, UseFormReturn } from "react-hook-form"
+import { Entry } from "./entry_types"
 
-export type Inputs = FieldValues & {
-    title: string,
-    dateStr: string,
-    hours: number,
-    publications: number,
-    videos: number,
-    returnVisits: number, 
-    comments: string,
-}
-
+export type Inputs = FieldValues & Entry
 
 export type CustomFormState = {
     successful: boolean,
