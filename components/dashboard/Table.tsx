@@ -229,7 +229,10 @@ const Table = ({
                                             </p>
                                             <div className="p-3">
                                                 <div className="my-5 flex gap-5 justify-center">
-                                                    <Button size="small" onClick={() => deleteEntry(entry.id, setDeletedID)} variant="red"><BiTrash />Confirm Delete</Button>
+                                                    <Button size="small" onClick={() => {
+                                                        setOpenDelete(false)
+                                                        deleteEntry(entry.id, setDeletedID)
+                                                    }} variant="red"><BiTrash />Confirm Delete</Button>
                                                     <Button size="small" onClick={() => setOpenDelete(false)}>Cancel</Button>
                                                 </div>
                                             </div>

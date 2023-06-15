@@ -18,3 +18,33 @@
     --background-end-rgb: 0, 0, 0;
   }
 } */
+
+
+.cancel-x {
+  position: relative;
+  overflow: hidden;
+}
+.cancel-x::before, .cancel-x::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 75%;
+  top: 50%;
+  left: 15%;
+  margin-top: -1px;
+  background: darkgray;
+}
+.cancel-x::before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.cancel-x::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}

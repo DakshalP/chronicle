@@ -1,11 +1,10 @@
 import { arrOfLength, cn, getDaysInMonth, getFirstWeekdayNum } from "@/lib/utils";
 import Day from "./Day";
 
-import prisma from "@/prisma/client";
 
-type Props = { loading: boolean, month: number; year: number, selectedDays: number[], className?: string}
+type Props = { loading: boolean, month: number; year: number, enteredDays: number[], zeroedDays: number[], className?: string}
 
-const Calendar = ({ loading, month, year, selectedDays, className = "" }: Props) => {
+const Calendar = ({ loading, month, year, enteredDays, zeroedDays, className = "" }: Props) => {
 
     const monthIndex = month - 1;
     const currentDate = new Date();
@@ -21,11 +20,15 @@ const Calendar = ({ loading, month, year, selectedDays, className = "" }: Props)
 
             const isToday = year === currentDate.getFullYear() && monthIndex === currentDate.getMonth() && dayNum === currentDate.getDate()
             
-            if (selectedDays.includes(dayNum)) {
-                return <Day key={dayNum} variant="green" isToday={isToday}>{dayNum}</Day>;
+            
+            if(!enteredDays.includes(dayNum)) {
+                if(zeroedDays.includes(dayNum)) {
+                    return <Day key={dayNum} variant="cancelled" isToday={isToday}>{dayNum}</Day>;
+                }
+                return <Day key={dayNum} isToday={isToday}>{dayNum}</Day>;
             }
             else {
-                return <Day key={dayNum} isToday={isToday}>{dayNum}</Day>;
+                return <Day key={dayNum} variant="green" isToday={isToday}>{dayNum}</Day>;
             }
         });
         

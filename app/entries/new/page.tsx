@@ -9,6 +9,14 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useState } from "react"
 import { dateFromYYYYMMDD } from "@/lib/utils"
 
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/Dialog";
+
 type Inputs = {
     title: string,
     dateStr: string,
@@ -25,7 +33,12 @@ const sumConvert = (x: any, y: any) => {
 }
 
 export default function NewEntry() {
+
     const [successful, setSuccessful] = useState(false);
+
+    const [confirm, setConfirm] = useState(false);
+    const [warn, setWarn] = useState(false);
+    
     const { register, handleSubmit, setValue, setError, watch, formState: { errors, isSubmitting } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
         //fill in default 0 and cast to number if needed
@@ -33,6 +46,11 @@ export default function NewEntry() {
             if(["hours", "publications", "videos", "returnVisits"].includes(key)) {
                 inputs[key] = Number(inputs[key]) || 0
             }
+        }
+
+        if(inputs.hours === 0 && !confirm) {
+            setWarn(true)
+            return;
         }
 
         const data = await fetch('/api/entries', {
@@ -119,7 +137,26 @@ export default function NewEntry() {
                 <Button className="w-full" variant={"cbrown"} type="submit" disabled={successful || isSubmitting}>{!isSubmitting ? 'Submit' : 'Submitting...'}</Button>
                 <Button className="w-full" href="/dashboard">Cancel</Button>
                 </div>
+                <Dialog open={warn} onOpenChange={setWarn}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>
+                            Are you sure you want to submit 0 hours?
+                        </DialogTitle>
+                        <DialogDescription>
+                            Submitting zero hours for a day will display an X over that day in the calendar. This is useful for marking that you did not do service on this day.
+                            <div className="p-5 flex gap-5 justify-end">
+                                <Button size="small" variant="cgreen" onClick={() => {
+                                    setConfirm(true)
+                                    setWarn(false)
+                                }}>Okay</Button>
+                            </div>
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
             </form>
+            
         </div>
         </div>
 

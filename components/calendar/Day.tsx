@@ -10,7 +10,8 @@ const dayVariants = cva(
                 blank: "bg-neutral-200 text-neutral-200 dark:bg-gray-700 dark:text-gray-700",
                 header: "bg-inherit",
                 green: "bg-cgreen text-white",
-            }                
+                cancelled: "bg-neutral-200 text-neutral-400 dark:bg-gray-700 dark:text-gray-500 cancel-x"
+            },
         },
         defaultVariants: {
             variant: 'default'

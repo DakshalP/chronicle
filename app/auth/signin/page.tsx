@@ -72,14 +72,14 @@ export default function SignIn({ searchParams }: { searchParams: { [key: string]
                             />
                         </div>
 
-                        <div className="text-right">
+                        {/* <div className="text-right">
                             <a
                                 href="#"
                                 className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
                             >
                                 Forgot Password?
                             </a>
-                        </div>
+                        </div> */}
 
                         <Button variant="cbrown" className="w-full" type="submit" disabled={isSubmitted}>{isSubmitted ? 'Loading...' : 'Sign in'}</Button>
                     </form>
