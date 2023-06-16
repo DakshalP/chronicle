@@ -30,7 +30,7 @@ const Hero = () => (
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center justify-between">
             <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                 <h1 className="title-font lg:text-8xl md:text-6xl sm:text-8xl text-6xl mb-4 font-display font-bold text-gray-900">
-                    A simple way to track your time
+                    An easier way to track your time
                 </h1>
                 <p className="mb-8 mt-2 text-xl leading-relaxed">
                    With Chronicle you can keep track of your service hours across all your devices. With automated totals and other features to make reporting easier.
@@ -52,20 +52,22 @@ const Statistic = () => (
   <div className="container px-5 pt-5 pb-20 mx-auto">
     <div className="flex flex-wrap -m-4 text-center">
         <div className="p-4 lg:w-1/4 w-1/2">
-            <h2 className="title-font font-display sm:text-4xl text-3xl text-gray-900 font-extrabold">Hours</h2>
+            <h2 className="title-font font-display sm:text-4xl xs:text-3xl text-2xl text-gray-900 font-extrabold">Hours</h2>
             <p className="leading-relaxed text-cbrown">✓</p>
           </div>
       
       <div className="p-4 lg:w-1/4 w-1/2">
-        <h2 className="title-font font-display sm:text-4xl text-3xl text-gray-900 font-extrabold">Videos</h2>
+        <h2 className="title-font font-display sm:text-4xl xs:text-3xl text-2xl text-gray-900 font-extrabold">Videos</h2>
         <p className="leading-relaxed text-cbrown">✓</p>
       </div>
       <div className="p-4 lg:w-1/4 w-1/2">
-        <h2 className="title-font font-display sm:text-4xl text-3xl text-gray-900 font-extrabold">Publications</h2>
+        <h2 className="title-font font-display sm:text-4xl xs:text-3xl text-2xl text-gray-900 font-extrabold">
+          Publications
+        </h2>
         <p className="leading-relaxed text-cbrown">✓</p>
       </div>
       <div className="p-4 lg:w-1/4 w-1/2">
-        <h2 className="title-font font-display sm:text-4xl text-3xl text-gray-900 font-extrabold">Returns</h2>
+        <h2 className="title-font font-display sm:text-4xl xs:text-3xl text-2xl text-gray-900 font-extrabold">Returns</h2>
         <p className="leading-relaxed text-cbrown">✓</p>
       </div>
     </div>

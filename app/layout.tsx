@@ -1,9 +1,9 @@
 import "./globals.css";
-import { Inter, DM_Serif_Display } from "next/font/google";
+import { Inter, DM_Serif_Text } from "next/font/google";
 import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
-const display = DM_Serif_Display({ weight: "400", subsets: ["latin"], variable: "--font-dm-serif-display" });
+const display = DM_Serif_Text({ weight: '400', subsets: ["latin"], variable: "--font-display" });
 
 export const metadata = {
     title: "Chronicle",
