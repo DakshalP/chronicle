@@ -7,7 +7,7 @@ const display = DM_Serif_Text({ weight: '400', subsets: ["latin"], variable: "--
 
 export const metadata = {
     title: "Chronicle",
-    description: "Log time and display reports.",
+    description: "An easier way to track your time.",
 };
 
 export default function RootLayout({
