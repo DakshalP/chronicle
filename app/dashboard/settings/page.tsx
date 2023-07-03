@@ -51,9 +51,9 @@ export default function ComingSoon() {
                             </DialogTitle>
                             <DialogDescription className="whitespace-pre-wrap p-10 text-justify flex flex-col gap-5">
                                 <span className="font-bold">iPhone/iPad</span>
-                                Open Chronicle in Safari and tap the share button. Choose "Add to Home Screen" from the menu. 
+                                Open Chronicle in Safari and tap the share button. Choose &ldquo;Add to Home Screen&rdquo; from the menu. 
                                 <span className="font-bold">Android</span> 
-                                Open Chronicle in Chrome, Edge, or Firefox and select "Add to Home Screen" or "Add to Phone" from the menu.
+                                Open Chronicle in Chrome, Edge, or Firefox and select &ldquo;Add to Home Screen&rdquo; or &ldquo;Add to Phone&rdquo; from the menu.
                                 <span className="italic text-xs text-right">Credits: How-To Geek</span>
                             </DialogDescription>
                         </DialogHeader>
