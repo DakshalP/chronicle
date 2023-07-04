@@ -40,9 +40,9 @@ export default function EditEntry({ params }: { params: { id: string }}) {
             }
         }
 
-        if(inputs.hours === 0 && !customFormState.confirm) {
-            console.log(inputs)
+        if(inputs.hours === 0 && !localStorage.getItem('confirmedZeroHourWarning')) {
             customFormState.setWarn(true)
+            localStorage.setItem('confirmedZeroHourWarning', 'confirmed')
             return;
         }
 

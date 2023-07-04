@@ -36,8 +36,6 @@ const Form = ({
         setSuccessful,
         warn,
         setWarn,
-        confirm,
-        setConfirm,
     },
     useFormReturn: {
         handleSubmit,
@@ -263,24 +261,23 @@ const Form = ({
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>
-                            Are you sure you want to submit 0 hours?
+                            You are about to submit zero hours.
                         </DialogTitle>
                         <DialogDescription>
-                            Submitting zero hours for a day will display an X
-                            over that day in the calendar. This is useful for
+                            This is useful for
                             marking that you did not do service on this day.
-                            <div className="p-5 flex gap-5 justify-end">
+                            It will be marked as an X on the calendar.
+                            <span className="p-5 pb-0 flex gap-5 justify-end">
                                 <Button
                                     size="small"
                                     variant="cgreen"
                                     onClick={() => {
-                                        setConfirm(true);
                                         setWarn(false);
                                     }}
                                 >
                                     Okay
                                 </Button>
-                            </div>
+                            </span>
                         </DialogDescription>
                     </DialogHeader>
                 </DialogContent>

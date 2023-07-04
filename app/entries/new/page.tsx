@@ -17,11 +17,12 @@ export default function NewEntry() {
             }
         }
 
-        if(inputs.hours === 0 && !customFormState.confirm) {
-            console.log(inputs)
+        if(inputs.hours === 0 && !localStorage.getItem('confirmedZeroHourWarning')) {
             customFormState.setWarn(true)
+            localStorage.setItem('confirmedZeroHourWarning', 'confirmed')
             return;
         }
+
 
         const data = await fetch('/api/entries', {
             method: "POST",

@@ -29,8 +29,6 @@ export default function FormWrapper({label, defaultValues, wrappedOnSubmit}: Pro
     const customFormState: CustomFormState =  {
         successful,
         setSuccessful,
-        confirm,
-        setConfirm,
         warn,
         setWarn
     }
